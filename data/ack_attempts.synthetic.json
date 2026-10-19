@@ -1,0 +1,56 @@
+{
+  "metadata": {
+    "synthetic": true,
+    "cohort_id": "email-illustration-v1",
+    "label": "Illustrative synthetic email experiment; not observed results or a causal estimate",
+    "window_start": "2026-10-19T00:00:00.000Z",
+    "window_end": "2026-10-25T23:59:59.999Z"
+  },
+  "records": [
+    {
+      "attempt_id": "A1",
+      "question_id": "C-Q01",
+      "canonical_participant_id": "C01",
+      "question_version": 1,
+      "wallet_id": "DEMO-WALLET-C01",
+      "wallet_connected_demo": true,
+      "outcome": "success",
+      "kyc_demo_status": "not_verified",
+      "sponsored_demo": false,
+      "at": "2026-10-19T03:05:29.000Z",
+      "real_transaction": false,
+      "cohort_id": "email-illustration-v1",
+      "synthetic": true
+    },
+    {
+      "attempt_id": "A2",
+      "question_id": "C-Q02",
+      "canonical_participant_id": "C02",
+      "question_version": 1,
+      "wallet_id": "DEMO-WALLET-C02",
+      "wallet_connected_demo": true,
+      "outcome": "failure",
+      "kyc_demo_status": "verified",
+      "sponsored_demo": false,
+      "at": "2026-10-19T03:05:31.000Z",
+      "real_transaction": false,
+      "cohort_id": "email-illustration-v1",
+      "synthetic": true
+    },
+    {
+      "attempt_id": "A3",
+      "question_id": "C-Q02",
+      "canonical_participant_id": "C02",
+      "question_version": 1,
+      "wallet_id": "DEMO-WALLET-C02",
+      "wallet_connected_demo": true,
+      "outcome": "success",
+      "kyc_demo_status": "verified",
+      "sponsored_demo": true,
+      "at": "2026-10-19T03:05:34.000Z",
+      "real_transaction": false,
+      "cohort_id": "email-illustration-v1",
+      "synthetic": true
+    }
+  ]
+}
