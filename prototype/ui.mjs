@@ -20,8 +20,10 @@ export function ackScenario(scenarios,q){
 }
 export function outcomeOptions(selected){return ['success','failure'].map(value=>'<option value="'+value+'"'+(value===selected?' selected':'')+'>'+label(value)+'</option>').join('');}
 export function sponsorshipMarkup(policy){
-  const available=policy.sponsored?Math.max(0,policy.limit-policy.used):0;
-  return '<strong>Sponsored acknowledgements available: '+available+' of '+policy.limit+'</strong><p>Identity verification (demo status) enables eligible sponsorship, up to two successes per participant/session and one per distinct question. Only successful acknowledgements consume the allowance. No real gas, fee or transaction occurs.</p>'+(policy.sponsored?'':'<p>'+esc(policy.message)+'</p>')+'Questions can always be submitted and qualified off-chain without KYC.';
+  const remaining=Math.max(0,policy.limit-policy.used),unverified=policy.code==='self_funded_unverified';
+  const heading=unverified?'Sponsorship unavailable — identity not verified':policy.sponsored?'Sponsored acknowledgements: '+remaining+' of '+policy.limit+' remaining':remaining===0?'Sponsorship allowance exhausted':'Sponsorship already used for this question';
+  const explanation=unverified?'Identity verification may unlock sponsorship. It is optional for questions and the simulated acknowledgement process.':policy.sponsored?'Up to two successful acknowledgements for distinct questions per canonical participant/session.':'You can still continue using the simulated self-funded route or skip the acknowledgement.';
+  return '<section class="sponsorship-summary" aria-label="Sponsorship and network fees"><strong>'+heading+'</strong><p>'+explanation+'</p>'+(!unverified?'<small>'+policy.used+' of '+policy.limit+' sponsored successes used · '+remaining+' remaining</small>':'')+(!policy.sponsored?'<div class="network-fee"><span>Estimated network fee</span><strong>Estimate unavailable — network not configured</strong><details><summary>About network fees</summary><p>Real network fees vary with network conditions. Check the network\'s official fee information and your wallet\'s transaction estimate before confirming an actual transaction. No payment occurs in this demo.</p></details></div>':'')+'</section>';
 }
 export function funnelMarkup(title,m){
   return '<figure class="funnel"><figcaption>'+esc(title)+'</figcaption><ol>'+[['Invitations',m.invited],['Eligible viewers',m.disclosure_viewers],['Distinct qualified people',m.qualified_participants]].map(([name,count])=>'<li><span>'+name+'</span><strong>'+count+'</strong></li>').join('')+'</ol></figure>';
@@ -46,3 +48,6 @@ export function nextActionValue(state,q){
   const saved=state.events.some(e=>e.event_type==='followup_status_changed'&&e.question_id===q.question_id&&e.next_action===q.next_action&&e.owner===q.followup_owner&&e.status===q.followup_status);
   return !saved&&['Assign a synthetic owner and next follow-up action','Await synthetic review','Await review or disposition','Review revised evidence question','Participant to clarify referenced gap'].includes(q.next_action)?'':q.next_action;
 }
+
+export const evaluatorLabel=()=>'<span class="evaluator-label"><img src="assets/evaluator-tool.svg" alt="" aria-hidden="true">Evaluator Tool</span>';
+export const reviewerQueueAction=()=>'<button type="button" class="button secondary evaluator-queue-action" data-action="queue">'+evaluatorLabel()+'<span>View reviewer queue</span></button>';
