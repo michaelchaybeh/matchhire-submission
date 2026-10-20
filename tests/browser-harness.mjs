@@ -31,7 +31,7 @@ export async function lab(){
     showModal(){this.open=true;}
     close(){this.open=false;this.emit('close');}
   }
-  for(const id of ['main','notice','identity','facts','event-log','raw-live','ack','certificate','certificate-content','close-certificate','print-certificate','reset','brand','mode-indicator','accounts','sponsorship','kyc','discard'])elements.set(id,new Element(id));
+  for(const id of ['main','notice','identity','profile-options','facts','event-log','raw-live','ack','certificate','certificate-content','close-certificate','print-certificate','reset','brand','mode-indicator','accounts','sponsorship','kyc','discard'])elements.set(id,new Element(id));
   const tabs=['journey','queue','dashboard','switch'].map(action=>new Element('','button','data-action="'+action+'"'));
   const document={querySelector:selector=>elements.get(selector.slice(1)),querySelectorAll:()=>tabs,addEventListener:(type,fn)=>listeners.set(type,fn)};
   const fixture=JSON.parse(await readFile(new URL('../data/experiment.synthetic.json',import.meta.url),'utf8'));

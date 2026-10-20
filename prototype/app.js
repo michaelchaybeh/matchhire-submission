@@ -5,8 +5,9 @@ import * as product from './product.mjs';
 const $=selector=>document.querySelector(selector);
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let state=model.createSession(),page='join',currentId=null,editingId=null,queueId=null,modalOpen=false,ackDialogId=null,connectionError=false,snapshot=null;
-const ackScenarios=new Map();
-const qCurrent=()=>state.questions.find(q=>q.question_id===currentId);
+const ackScenarios=new Map(),draftEdits=new Map();
+let participantContext=0;
+const qCurrent=()=>state.questions.find(q=>q.question_id===currentId&&q.canonical_participant_id===state.active_participant_id);
 const format=value=>value===null?'N/A':Number(value.toFixed(2))+'%';
 function ackLabel(q){if(q.acknowledgement==='success')return 'Demo acknowledgement recorded';if(q.acknowledgement==='failed')return q.wallet_decision==='off_chain'?'Continued off-chain after a failed attempt':'Acknowledgement failed · Your question is saved';if(q.acknowledgement==='skipped')return 'Continued off-chain';return 'Optional acknowledgement not recorded';}
 function preview(q){return '<div class="question-preview">'+esc(q.text.length>160?q.text.slice(0,160)+'…':q.text)+'</div>'+(q.text.length>160?'<details><summary>Show full question</summary><div class="full-question">'+esc(q.text)+'</div></details>':'');}
@@ -16,13 +17,13 @@ function notify(message){$('#notice').textContent=message;}
 function ownQuestions(){return state.questions.filter(q=>q.canonical_participant_id===state.active_participant_id);}
 function notebook(){
   const p=model.participant(state),m=metrics(state,{includeQA:true});
-  $('#identity').innerHTML=product.profile(p);$('#identity').setAttribute('aria-label',p?'Choose participant · '+nameFor(p):'Choose participant');
+  $('#identity').innerHTML=product.profile(p);$('#identity').setAttribute('aria-label',p?'Participant profile · '+nameFor(p):'Choose participant');$('#identity').setAttribute('aria-haspopup',p?'menu':'dialog');$('#identity').setAttribute('aria-controls',p?'profile-options':'accounts');$('#profile-options').innerHTML=product.profileOptions(p);closeProfileMenu();
   const values=[['Canonical participant ID',p?.canonical_participant_id||'Not selected'],['Registered canonical people',new Set(state.registrations.map(r=>r.canonical_participant_id)).size],['Invitation',p?label(p.invitation_status):'Not selected'],['KYC (demo)',p?label(p.kyc_demo_status):'Not selected'],['Wallet (demo)',p&&state.wallet_connections.includes(p.canonical_participant_id)?'Connected':'Not connected'],['Eligible disclosure viewers',m.disclosure_viewers],['Accepted / qualified questions',m.accepted_questions+' / '+m.qualified_questions],['Qualified people',m.qualified_participants],['Live QA conversion (tiny synthetic sample)',format(m.qualified_conversion)],['Demo attempts / real TXs',m.ack_attempts+' / '+m.real_transactions],['Explicit abandonments',state.events.filter(e=>e.event_type==='disclosure_abandoned').length]];
   $('#facts').innerHTML=values.map(([a,b])=>'<div><dt>'+esc(a)+'</dt><dd>'+esc(b)+'</dd></div>').join('');
   $('#event-log').textContent=JSON.stringify(state.events.slice(-15).reverse(),null,2);$('#raw-live').textContent=JSON.stringify(state,null,2);
 }
 function render({focusMain=true}={}){
-  const p=model.participant(state);let content='';
+  const p=model.participant(state);if(!p&&!['join','queue','dashboard'].includes(page))page='join';let content='';
   const mode=page==='queue'?'reviewer':page==='dashboard'?'measurement':'participant';
   const signpost=$('#mode-indicator');signpost.dataset.mode=mode;signpost.hidden=page==='join';signpost.textContent=page==='join'?'':mode==='reviewer'?'Reviewer mode · Decisions and operational follow-up':mode==='measurement'?'Measurement mode · Synthetic snapshot and separate live QA':'Participant mode · Suncrest community review';
   document.querySelectorAll('.tabs [data-action]').forEach(button=>{if(button.dataset.action===({participant:'journey',reviewer:'queue',measurement:'dashboard'})[mode])button.setAttribute('aria-current','page');else button.removeAttribute('aria-current');});
@@ -60,20 +61,30 @@ function openAck(retry=false){connectionError=false;const scenario=ackScenario(a
 function closeAck(){modalOpen=false;ackDialogId=null;for(const id of ['ack','sponsorship','kyc'])if($('#'+id).open)$('#'+id).close();}
 function offchain(source){model.continueOffchain(state,currentId,source);closeAck();page='confirmation';render();}
 function saveVisibleDraft(){if(page!=='question')return;const text=$('#question-text').value;model.saveDraft(state,text,$('#section').value);$('#draft-status').textContent='✓ Draft saved';$('#question-count').textContent=characterCount(text);$('#question-count').setAttribute('data-limit-exceeded',String(text.length>2000));$('#question-error').textContent='';notebook();}
-function discardAndExit(){if($('#discard').open)$('#discard').close();model.abandon(state);editingId=null;page='eligibility';render();}
+function discardAndExit(){draftEdits.delete(state.active_participant_id);if($('#discard').open)$('#discard').close();model.abandon(state);editingId=null;page='eligibility';render();}
 function inlineConfirmation(id,message){render({focusMain:false});$('#'+id).textContent=message;$('#'+id).focus({preventScroll:true});}
+function closeProfileMenu(restoreFocus=false){$('#profile-options').hidden=true;$('#identity').setAttribute('aria-expanded','false');if(restoreFocus)$('#identity').focus();}
+function clearParticipantView(){
+  if(editingId&&state.active_participant_id)draftEdits.set(state.active_participant_id,editingId);
+  participantContext++;for(const scenario of ackScenarios.values())scenario.connecting=false;
+  closeProfileMenu();closeAck();for(const id of ['accounts','certificate','discard'])if($('#'+id).open)$('#'+id).close();
+  for(const id of ['ack','sponsorship','kyc','certificate-content'])$('#'+id).innerHTML='';
+  currentId=null;editingId=null;connectionError=false;
+}
 const actions={
-  choose(){ $('#accounts').innerHTML=product.accounts();$('#accounts').showModal(); },
+  profile(){if(!model.participant(state))return actions.choose();if(!$('#profile-options').hidden)return closeProfileMenu(true);$('#profile-options').hidden=false;$('#identity').setAttribute('aria-expanded','true');$('#profile-change').focus();},
+  signout(){if(!model.participant(state))return;saveVisibleDraft();clearParticipantView();model.signOut(state);page='join';render();notify('Signed out. Your session records and drafts are preserved in this tab.');},
+  choose(){closeProfileMenu(!$('#profile-options').hidden);$('#accounts').innerHTML=product.accounts();$('#accounts').showModal(); },
   'close-accounts'(){ $('#accounts').close(); },
-  register(alias){model.register(state,alias);if($('#accounts').open)$('#accounts').close();page='eligibility';editingId=null;currentId=null;render();},
+  register(alias){clearParticipantView();model.register(state,alias);page='eligibility';render();},
   switch(){actions.choose();},journey(){page=state.active_participant_id?'eligibility':'join';render();},
   disclosure(){model.openDisclosure(state);page='disclosure';render();},
-  question(){model.beginQuestion(state);page='question';render();$('#question-text').focus();},
+  question(){model.beginQuestion(state);editingId=draftEdits.get(state.active_participant_id)||null;page='question';render();$('#question-text').focus();},
   back(){saveVisibleDraft();model.openDisclosure(state,true);page='disclosure';render();},
   abandon(){saveVisibleDraft();if(meaningfulDraft(state.drafts[state.active_participant_id]))$('#discard').showModal();else discardAndExit();},
   'keep-editing'(){ $('#discard').close();if(page==='question')$('#question-text').focus({preventScroll:true}); },
   discard(){discardAndExit();},
-  another(){model.beginQuestion(state);editingId=null;currentId=null;page='question';render();$('#question-text').focus();},
+  another(){model.beginQuestion(state);draftEdits.delete(state.active_participant_id);editingId=null;currentId=null;page='question';render();$('#question-text').focus();},
   done(){model.completeSession(state);page='done';render();},
   queue(){page='queue';render();},dashboard(){page='dashboard';render();},
   'ack-proceed'(){const p=model.participant(state),scenario=ackScenario(ackScenarios,qCurrent());if(p.kyc_demo_status!=='verified'&&!scenario.kycSkipped){$('#sponsorship').innerHTML=product.feeDialog();displayAckDialog('sponsorship');}else{scenario.stage='wallet';renderAck();displayAckDialog('ack');}},
@@ -81,31 +92,38 @@ const actions={
   'back-sponsorship'(){ $('#sponsorship').innerHTML=product.feeDialog();displayAckDialog('sponsorship'); },
   'without-kyc'(){const scenario=ackScenario(ackScenarios,qCurrent());scenario.kycSkipped=true;scenario.stage='wallet';renderAck();displayAckDialog('ack');},
   async connect(){
-    const q=qCurrent(),scenario=rememberAckScenario(),version=q.version;if(scenario.connecting)return;scenario.connecting=true;renderAck();
-    await new Promise(resolve=>setTimeout(resolve,350));scenario.connecting=false;
+    const q=qCurrent(),scenario=rememberAckScenario(),version=q.version,context=participantContext;if(scenario.connecting)return;scenario.connecting=true;renderAck();
+    await new Promise(resolve=>setTimeout(resolve,350));if(context!==participantContext)return;scenario.connecting=false;
     if(!state.questions.includes(q)||q.version!==version||state.active_participant_id!==q.canonical_participant_id||q.wallet_decision==='off_chain'||!modalOpen)return;
     connectionError=!model.connectWallet(state,q.question_id,scenario.connect);renderAck();notebook();
   },
   acknowledge(){rememberAckScenario();const attempt=model.acknowledge(state,currentId,ackScenario(ackScenarios,qCurrent()).ack);closeAck();page=attempt.outcome==='success'?'ack-result':'confirmation';render();},
   retry(){model.retryAcknowledgement(state,currentId);page='saved';render();openAck(true);},
   offchain(){offchain('continue_off_chain');},dismiss(){offchain('dismiss_button');},
-  revise(){const q=qCurrent();editingId=q.question_id;model.saveDraft(state,q.text,q.disclosure_section_id);page='question';render();},
+  revise(){const q=qCurrent();editingId=q.question_id;draftEdits.set(state.active_participant_id,editingId);model.saveDraft(state,q.text,q.disclosure_section_id);page='question';render();},
   'show-question'(id){const q=ownQuestions().find(q=>q.question_id===id);if(!q)throw Error('Select the participant who owns this question.');currentId=id;editingId=null;page='confirmation';render();},
   'show-current'(){const q=ownQuestions().at(-1);if(q){currentId=q.question_id;page='confirmation';}else page=state.active_participant_id?'eligibility':'join';render();},
-  certificate(id){const c=model.certificateRecord(state,id);$('#certificate-content').innerHTML=certificateMarkup(c);$('#certificate').showModal();}
+  certificate(id){if(!ownQuestions().some(q=>q.question_id===id))throw Error('Select the participant who owns this question.');const c=model.certificateRecord(state,id);$('#certificate-content').innerHTML=certificateMarkup(c);$('#certificate').showModal();}
 };
-document.addEventListener('click',event=>{const button=event.target.closest('[data-action]');if(!button)return;notify('');try{const result=actions[button.dataset.action]?.(button.dataset.id);if(result?.catch)return result.catch(error=>notify(error.message));return result;}catch(error){notify(error.message);}});
+const signedOutActions=new Set(['profile','choose','close-accounts','register','switch','journey','queue','dashboard','signout']);
+document.addEventListener('click',event=>{if(!event.target.closest('.profile-menu'))closeProfileMenu();const button=event.target.closest('[data-action]');if(!button)return;notify('');try{if(!model.participant(state)&&!signedOutActions.has(button.dataset.action))throw Error('Choose a participant to continue.');const result=actions[button.dataset.action]?.(button.dataset.id);if(result?.catch)return result.catch(error=>notify(error.message));return result;}catch(error){notify(error.message);}});
+document.addEventListener('keydown',event=>{
+  if($('#profile-options').hidden){if(event.target.id==='identity'&&model.participant(state)&&['ArrowDown','ArrowUp'].includes(event.key)){event.preventDefault();actions.profile();if(event.key==='ArrowUp')$('#profile-signout').focus();}return;}
+  const items=['profile-change','profile-signout'],index=items.indexOf(event.target.id);
+  if(['Escape','Tab'].includes(event.key)){if(event.key==='Escape')event.preventDefault();closeProfileMenu(true);}
+  else if(['ArrowDown','ArrowUp','Home','End'].includes(event.key)){event.preventDefault();$('#'+items[event.key==='Home'?0:event.key==='End'?1:(index+(event.key==='ArrowDown'?1:items.length-1))%items.length]).focus();}
+});
 $('#brand').addEventListener('click',event=>{event.preventDefault();actions.journey();});
 $('#main').addEventListener('input',event=>{if(page==='question'&&['question-text','section'].includes(event.target.id))saveVisibleDraft();});
 $('#main').addEventListener('change',event=>{if(event.target.id==='review-question'){queueId=event.target.value;render();}if(event.target.id==='review-status'){$('#review-reason').innerHTML=reasonOptions(event.target.value,$('#review-reason').value);$('#qualification-checklist').hidden=event.target.value!=='qualified';}});
 $('#ack').addEventListener('change',event=>{if(['connect-outcome','ack-outcome'].includes(event.target.id))rememberAckScenario();});
 $('#main').addEventListener('submit',event=>{event.preventDefault();notify('');try{
-  if(event.target.id==='question-form'){const result=editingId?model.reviseQuestion(state,editingId,$('#question-text').value,$('#section').value):model.submitQuestion(state,$('#question-text').value,$('#section').value);if(!result.ok){$('#question-error').textContent=result.message;notebook();return;}currentId=result.question.question_id;editingId=null;page='saved';render();openAck();}
+  if(event.target.id==='question-form'){if(!model.participant(state)||page!=='question')throw Error('Choose a participant and open the question form first.');const result=editingId?model.reviseQuestion(state,editingId,$('#question-text').value,$('#section').value):model.submitQuestion(state,$('#question-text').value,$('#section').value);if(!result.ok){$('#question-error').textContent=result.message;notebook();return;}currentId=result.question.question_id;draftEdits.delete(state.active_participant_id);editingId=null;page='saved';render();openAck();}
   if(event.target.id==='review-form'){const q=model.reviewQuestion(state,event.target.dataset.id,{decision:$('#review-status').value,reason_code:$('#review-reason').value,reason_note:$('#review-note').value,criteria:$('#review-status').value==='qualified'?{material:$('#material').checked,actionable:$('#actionable').checked,not_spam:$('#not-spam').checked}:{}});inlineConfirmation('review-feedback','✓ Review decision saved — Question '+label(q.review_status).toLowerCase());}
   if(event.target.id==='followup-form'){const status=$('#followup-status').value,owner=$('#followup-owner').value;model.setFollowup(state,event.target.dataset.id,{status,owner,next_action:$('#next-action').value});inlineConfirmation('followup-feedback','✓ Follow-up saved — '+label(status)+' and assigned to '+ownerLabel(owner));}
 }catch(error){notify(error.message);}});
 for(const id of ['ack','sponsorship','kyc']){const dialog=$('#'+id);dialog.addEventListener('cancel',event=>{event.preventDefault();offchain('escape_dismissal');});dialog.addEventListener('close',()=>{if(modalOpen&&ackDialogId===id&&!dialog.open)offchain('dialog_dismissal');});}
 $('#discard').addEventListener('cancel',event=>{event.preventDefault();actions['keep-editing']();});
 $('#close-certificate').addEventListener('click',()=>$('#certificate').close());$('#print-certificate').addEventListener('click',()=>window.print());
-$('#reset').addEventListener('click',()=>{closeAck();for(const id of ['certificate','accounts','discard'])if($('#'+id).open)$('#'+id).close();state=model.createSession();ackScenarios.clear();page='join';currentId=null;editingId=null;queueId=null;notify('Live sandbox reset. Experiment snapshot unchanged.');render();});
+$('#reset').addEventListener('click',()=>{closeAck();for(const id of ['certificate','accounts','discard'])if($('#'+id).open)$('#'+id).close();state=model.createSession();ackScenarios.clear();draftEdits.clear();page='join';currentId=null;editingId=null;queueId=null;notify('Live sandbox reset. Experiment snapshot unchanged.');render();});
 try{const response=await fetch('../data/experiment.synthetic.json');if(!response.ok)throw Error('Cannot load local experiment fixture. Start the documented server.');snapshot=await response.json();render();}catch(error){$('#main').textContent=error.message;}

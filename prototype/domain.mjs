@@ -40,6 +40,8 @@ export function register(state,alias) {
   state.registrations.push(r);event(state,'registration_resolved',{registration_id:r.registration_id,duplicate_resolution:r.duplicate_resolution});
   event(state,'invitation_confirmed',{eligible:participant(state).eligible,invitation_status:participant(state).invitation_status,kyc_demo_status:participant(state).kyc_demo_status});return r;
 }
+// Signing out changes only the active selection; session history and drafts remain intact.
+export function signOut(state) {state.active_participant_id=null;}
 export function openDisclosure(state,backward=false) {
   active(state);if(!state.active_paths.includes(state.active_participant_id))state.active_paths.push(state.active_participant_id);
   event(state,'disclosure_opened',{disclosure_version:'suncrest-fiction-v1',reading_verified:false});
