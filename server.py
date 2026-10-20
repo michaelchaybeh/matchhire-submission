@@ -39,7 +39,7 @@ if __name__ == '__main__':
     if check:
         Thread(target=server.serve_forever, daemon=True).start()
         try:
-            for asset in ('', 'prototype/', 'prototype/app.js', 'prototype/domain.mjs', 'prototype/styles.css', 'measurement/metrics.mjs', 'data/experiment.synthetic.json', 'directive.md'):
+            for asset in ('', 'prototype/', 'prototype/app.js', 'prototype/domain.mjs', 'prototype/ui.mjs', 'prototype/product.mjs', 'prototype/styles.css', 'prototype/assets/profile.svg', 'prototype/assets/john.svg', 'prototype/assets/maya.svg', 'prototype/assets/avery.svg', 'prototype/assets/sam.svg', 'prototype/assets/suncrest-network.svg', 'measurement/metrics.mjs', 'data/experiment.synthetic.json', 'directive.md'):
                 with urlopen(f'http://127.0.0.1:{server.server_port}/{asset}', timeout=5) as response:
                     assert response.status == 200
                     assert response.read()

@@ -1,9 +1,9 @@
 // Pure local synthetic participation model. No browser storage or integrations.
 export const SECTIONS = [
-  {id:'pilot',title:'Proposed pilot',text:'Suncrest proposes a pilot covering 10 renewable-energy projects. No operating assets have been verified.'},
-  {id:'reporting',title:'Monthly reporting assumption',text:'Monthly project updates are expected. This assumes accurate, timely contributor reporting and available source documents; neither is validated.'},
-  {id:'verification',title:'Verification gap',text:'Independent verification procedures, reviewer responsibilities and source-evidence standards are not finalized. No independent audit or reserve verification exists.'},
-  {id:'risk',title:'Material risks',text:'Incomplete or misleading reports, software flaws, service interruptions, governance disputes, costs and uncertain legal requirements may prevent delivery.'}
+  {id:'pilot',title:'Proposed Pilot',text:'Suncrest proposes an evidence registry for a pilot of 10 renewable-energy projects. A Web3 design could link source documents to tamper-evident reporting records and optional on-chain attestations. This is a proposal: no operating assets or deployed blockchain infrastructure have been verified.'},
+  {id:'reporting',title:'Monthly Reporting Assumption',text:'Monthly project updates would reference contributor evidence and proposed attestation records. This assumes accurate, timely reporting, available source documents and reliable smart-contract and data-linking designs. Tamper-evident records cannot establish whether an underlying report is true; these assumptions remain unvalidated.'},
+  {id:'verification',title:'Verification Gap',text:'Independent verification procedures, source-evidence standards, smart-contract reviews and reviewer responsibilities are not finalized. The proposed governance process has not established how disputed evidence would be resolved. No independent audit, asset or reserve verification exists.'},
+  {id:'risk',title:'Material Risks',text:'Incomplete or misleading reports, smart-contract or software flaws, broken data links, service interruptions, governance concentration or disputes, unpredictable network costs and uncertain legal requirements may prevent delivery. No confirmed delivery schedule, asset backing or guaranteed returns are established.'}
 ];
 export const REVIEW_REASONS = ['specific_material_gap','claim_evidence','vague','off_topic','gibberish','duplicate_question','ineligible','abuse','other'];
 export const normalize = text => String(text).trim().replace(/\s+/g,' ').toLowerCase();
