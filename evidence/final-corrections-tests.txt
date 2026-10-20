@@ -1,0 +1,287 @@
+Final correction verification — 20 October 2026 (KST)
+Baseline: 8c70b012b3e1a8b6498797142bcb4af81ed65b4b
+
+COMMAND: node --test tests/artifacts.test.mjs tests/domain.test.mjs tests/evaluator.test.mjs tests/metrics.test.mjs tests/participant.test.mjs tests/product.test.mjs tests/ui.test.mjs tests/handoff.test.mjs
+EXIT: 0
+✔ exactly five prioritized backlog tasks are documented (6.9152ms)
+✔ all assessment Markdown artifact links resolve locally (27.3079ms)
+✔ UI uses escaped bounded question previews and local-only data request (4.5677ms)
+✔ submission documents do not contain private vault copy or internal instruction links (7.6433ms)
+✔ wallet refusal retains a reviewable, qualifiable off-chain question (6.5895ms)
+✔ duplicate participant alias resolves canonical identity without inflating conversion (0.6456ms)
+✔ a different person on the same browser is not deduplicated as John (0.3467ms)
+✔ waiting participant cannot submit or enter eligible denominator (0.7173ms)
+✔ unrecognized aliases do not collect arbitrary identity or PII (0.2298ms)
+✔ submission saved before any wallet decision with participant and section reference (0.2718ms)
+✔ empty/whitespace, missing section and 2001 units are rejected without IDs (0.406ms)
+✔ normalized duplicate question preserves original review/acknowledgement and next ID (2.1639ms)
+✔ similar wording flags conservative review without rejection or qualification (1.4892ms)
+✔ draft survives backward navigation; explicit abandonment discards it (0.5285ms)
+✔ submission is not abandonment; repeated disclosure openings never assert reading (0.4437ms)
+✔ critical short question can qualify without KYC/wallet or minimum word count (0.2855ms)
+✔ qualification requires explicit checklist, reason and note; pending is not qualified (0.416ms)
+✔ review decisions and histories recalculate current conversion (0.3835ms)
+✔ gibberish/promotion can be explicitly excluded and do not auto-qualify (0.3536ms)
+✔ clarification revision preserves old text and review history, requires fresh qualification (0.4957ms)
+✔ follow-up requires qualification and records owner, next action and status (0.4375ms)
+✔ connection failure and recovery preserve the saved question (0.3265ms)
+✔ failed acknowledgement never erases a question; retry succeeds with independent history (0.4198ms)
+✔ off-chain after failure is final, retains attempt history and changes no other question (0.4183ms)
+✔ one connection supports repeated questions; decline after connecting preserves connection (0.2964ms)
+✔ Option C sponsors two distinct successes; failures free and third is self-funded (0.519ms)
+✔ unverified gas policy is self-funded but never restricts questions or qualification (0.221ms)
+✔ sponsorship allowance is canonical, unaffected by duplicate aliases or another person (0.3586ms)
+✔ certificate requires correct question-specific successful current-version demo result (0.5696ms)
+✔ revising a clarification preserves ack history without reusing certificate or sponsorship (0.3174ms)
+✔ reset/reload model is fresh and every event has canonical schema (0.2418ms)
+✔ explicit exit after a repeat form counts abandonment even with no draft (0.2462ms)
+✔ sign-out clears only the active selection and denies participant operations until re-selection (1.4307ms)
+✔ monotonic clock formats drift, hours and fractional seconds without a wall clock (2.7495ms)
+✔ timer survives navigation, sign-out, dialogs and aliases without mutating event timestamps (74.9708ms)
+✔ timer interval lifecycle avoids duplicates and catches up after page suspension (1.3673ms)
+✔ overflow hint is measured, hidden for fitting or stacked content and updated by observers (0.5616ms)
+✔ pointer resizing changes only height, clamps a practical minimum and leaves the companion unchanged (0.8867ms)
+✔ keyboard resizing reveals content, updates the hint, survives navigation and resets with the session (0.8708ms)
+✔ sponsorship and fee copy accurately distinguishes unavailable, remaining, exhausted and same-question limits (1.3752ms)
+✔ all technical evidence and reviewer scenarios keep evaluator labels and raw content (15.5481ms)
+✔ receipt next-question section has dedicated spacing and preserves short/long question actions (0.9883ms)
+✔ acknowledgement offer opens with focus inside the named dialog (29.5492ms)
+✔ verified wallet replacement moves focus inside without changing the saved question (14.1875ms)
+✔ sponsorship and KYC transitions focus their current headings without changing identity (10.7559ms)
+✔ connection failure, retry and success retain focus in the replaced wallet content (12.0396ms)
+✔ async connection completion preserves an available off-chain control that the participant focused (8.398ms)
+✔ ack failure retry focuses the dialog and preserves independent outcomes (12.6635ms)
+✔ Tab and Shift+Tab wrap visible enabled wallet controls, including entry from the heading (7.525ms)
+✔ Escape and explicit dismissal in every acknowledgement stage preserve the question and restore the surviving main origin (54.384ms)
+✔ reviewer return opens the only selected question without adding events (7.8808ms)
+✔ reviewer return opens the oldest of multiple questions with the same canonical records and metrics (10.6672ms)
+✔ reviewer return opens the middle of multiple questions with the same canonical records and metrics (14.0825ms)
+✔ reviewer return opens the newest of multiple questions with the same canonical records and metrics (8.4057ms)
+✔ reviewer return retains the selected revised question and its current review, acknowledgement and follow-up state (19.9386ms)
+✔ reviewer return never exposes another participant question or silently substitutes a different owned question (30.5616ms)
+✔ missing reviewer question and signed-out returns use safe explanations without data or measurement changes (9.9169ms)
+✔ 50 invitations / 25 per group; 40 viewers / 20 per group (2.4811ms)
+✔ qualified person outcomes and all approved conversion results reconcile (0.552ms)
+✔ multiple qualified questions, aliases and repeated opens do not inflate people (0.3646ms)
+✔ QA fixtures excluded and eligibility separately enforced (0.6687ms)
+✔ cohort/window filters exclude out-of-scope views and questions (4.0512ms)
+✔ changing current review status changes unique numerator without changing denominator (1.6119ms)
+✔ failed acknowledgement and off-chain decisions never affect qualified conversion (1.7263ms)
+✔ attempt-level wallet results remain separate from real transactions (0.4001ms)
+✔ zero denominator is N/A rather than zero conversion (1.5859ms)
+✔ all records labelled synthetic; references resolve and full JSON exports agree (44.115ms)
+✔ empty dashboards use actual zero counters, truthful eligibility and local assets without mutation (22.1253ms)
+✔ counts follow accepted current records and explicit review decisions, not attempts or registrations (3.3761ms)
+✔ both John aliases recover identical canonical contributions while other people see none (1.4654ms)
+✔ acknowledgement counts and receipts require a matching current-version success, never repeated attempts (33.5392ms)
+✔ off-chain and failed-then-final-off-chain questions stay visible without a receipt or retry resurrection (2.0452ms)
+✔ follow-up and reviewer explanation reflect saved records, with honest unassigned defaults (2.3611ms)
+✔ timeline uses only supported real milestones with canonical and question ownership checked (1.8715ms)
+✔ wallet connection is read from the canonical connection list, independently of submission or acknowledgement history (0.8815ms)
+✔ allowance shares existing gas policy, keeps failures free and limits sponsorship by person and distinct question (4.8566ms)
+✔ rendering and alias returns never change aggregate measurements or introduce extra events (10.8813ms)
+✔ dashboard actions use the existing validated workflow and pending Sam can only view the disclosure (16.8009ms)
+✔ clarification action opens the existing edit form and preserves current-version review and receipt safeguards (13.2499ms)
+✔ participant receipts target the correct successful question while unrelated questions have no certificate action (16.0143ms)
+✔ question details and history escape untrusted content and show honest unavailable dates (1.0271ms)
+✔ native details, focusable single scroll region and local-only dashboard assets support keyboard access (3.0311ms)
+✔ five illustrated account rows preserve all fixture mappings and registration events (33.0775ms)
+✔ account rows pair one readable status with each local icon and distinguish the returning alias (0.7357ms)
+✔ chooser vendors only five safe SVG assets with upstream license and attribution (6.9811ms)
+✔ returning John resumes saved work without double-counting and Avery stays distinct (42.7741ms)
+✔ homepage and evaluator surfaces have clear context, local original artwork and no fake market controls (20.2516ms)
+✔ homepage keeps the primary invitation without redundant labels and retains evaluator navigation (7.048ms)
+✔ disclosure retains four stable material references with a proposed Web3 narrative (0.4981ms)
+✔ single-question topic dropdown hides identifiers and does not add Other (5.6262ms)
+✔ draft counter and saved status reflect the actual in-memory save and survive backward navigation (4.8634ms)
+✔ Keep editing and Escape preserve a meaningful draft without recording abandonment (8.2855ms)
+✔ a selected topic alone needs confirmation; discard uses existing abandonment behavior (7.325ms)
+✔ empty drafts exit immediately and over-limit input keeps existing validation semantics (7.7424ms)
+✔ submission success precedes every optional acknowledgement decision without prominent question IDs (5.6238ms)
+✔ John can explore KYC information without changing verification, qualification or sponsorship (11.8557ms)
+✔ verified Maya proceeds directly to the wallet without an unnecessary KYC prompt (6.5387ms)
+✔ connection states show progress, failure, retry and success while retaining the saved question (5.5602ms)
+✔ off-chain continuation during connection prevents a late connection from changing state (5.352ms)
+✔ off-chain continuation stays available in offer, sponsorship, KYC and wallet dialogs (21.8426ms)
+✔ successful acknowledgement has a separate traceable receipt without qualifying the question (6.0868ms)
+✔ reviewer primary labels use names and Technical Evidence retains canonical references (5.5756ms)
+✔ review and follow-up success feedback stays next to the action with preserved focus context (7.847ms)
+✔ demo wallets remain isolated per person and a fresh tab has independent session state (9.0989ms)
+✔ secondary question-form actions cannot submit through native button defaults (3.1903ms)
+✔ profile sign-out is offered only for a selected participant (2.7083ms)
+✔ John, Maya and Avery sign out and resume distinct questions, reviews, acknowledgements and drafts in one shared session (33.9882ms)
+✔ sign-out closes every wallet stage without making an off-chain decision or losing the saved question (14.3738ms)
+✔ a pending connection cannot complete after sign-out and re-selection of the same alias (5.41ms)
+✔ sign-out preserves unblurred clarification drafts and their revision context without abandonment (9.8455ms)
+✔ selecting a different person after sign-out cannot reopen the prior participant question or certificate (6.8032ms)
+✔ unreviewed UI has human labels, no implicit reason and a hidden qualification checklist (26.1357ms)
+✔ decision changes filter reasons and toggle criteria without losing edited notes or checks (12.8341ms)
+✔ review save still requires a reason, note and every qualified criterion (11.2047ms)
+✔ qualified follow-up defaults to assignment guidance and preserves manually saved work (10.3685ms)
+✔ all reason codes have friendly labels and decision options preserve canonical codes (0.388ms)
+✔ acknowledgement Failure survives connection failure, recovery and modal rerenders (14.2056ms)
+✔ certificates render the exact successful attempt, timestamp, identity and independent review status (8.5248ms)
+✔ certificate derivation rejects stale versions or unmatched records and chooses the correct question (0.9276ms)
+✔ waiting persona gets readable disclosure and an accessible disabled question action (3.7383ms)
+✔ sponsorship UI reflects two distinct successes, free failures and unchanged exhausted CTA (8.2574ms)
+✔ unverified participant sees no eligible sponsorship and retains wallet-free participation (5.3709ms)
+✔ measurement separates synthetic funnels and collapsed technical outputs without changing calculations (10.8883ms)
+✔ ack scenario selections are scoped to question and version (0.1749ms)
+ℹ tests 124
+ℹ suites 0
+ℹ pass 124
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 528.1515
+
+SYNTAX CHECKS (each exited 0):
+node --check measurement/generate-fixtures.mjs — PASS
+node --check measurement/metrics.mjs — PASS
+node --check measurement/verify.mjs — PASS
+node --check prototype/app.js — PASS
+node --check prototype/domain.mjs — PASS
+node --check prototype/evaluator.mjs — PASS
+node --check prototype/participant.mjs — PASS
+node --check prototype/product.mjs — PASS
+node --check prototype/ui.mjs — PASS
+node --check tests/artifacts.test.mjs — PASS
+node --check tests/browser-harness.mjs — PASS
+node --check tests/domain.test.mjs — PASS
+node --check tests/evaluator.test.mjs — PASS
+node --check tests/metrics.test.mjs — PASS
+node --check tests/participant.test.mjs — PASS
+node --check tests/product.test.mjs — PASS
+node --check tests/ui.test.mjs — PASS
+node --check tests/handoff.test.mjs — PASS
+
+COMMAND: node measurement/verify.mjs
+EXIT: 0
+{
+  "control": {
+    "invited": 25,
+    "registered_people": 25,
+    "disclosure_viewers": 20,
+    "question_submitters": 8,
+    "accepted_questions": 9,
+    "qualified_questions": 5,
+    "qualified_participants": 4,
+    "pending_questions": 1,
+    "clarification_questions": 2,
+    "excluded_questions": 1,
+    "qualified_conversion": 20,
+    "submission_conversion": 40,
+    "invitation_to_qualified": 16,
+    "question_qualification_rate": 55.55555555555556,
+    "registration_attempts": 26,
+    "duplicate_registration_attempts": 1,
+    "duplicate_registration_rate": 3.8461538461538463,
+    "ack_attempts": 3,
+    "ack_successes": 2,
+    "ack_success_rate": 66.66666666666667,
+    "sponsored_successes": 1,
+    "real_transactions": 0
+  },
+  "variant": {
+    "invited": 25,
+    "registered_people": 25,
+    "disclosure_viewers": 20,
+    "question_submitters": 12,
+    "accepted_questions": 12,
+    "qualified_questions": 7,
+    "qualified_participants": 7,
+    "pending_questions": 2,
+    "clarification_questions": 2,
+    "excluded_questions": 1,
+    "qualified_conversion": 35,
+    "submission_conversion": 60,
+    "invitation_to_qualified": 28,
+    "question_qualification_rate": 58.333333333333336,
+    "registration_attempts": 25,
+    "duplicate_registration_attempts": 0,
+    "duplicate_registration_rate": 0,
+    "ack_attempts": 0,
+    "ack_successes": 0,
+    "ack_success_rate": null,
+    "sponsored_successes": 0,
+    "real_transactions": 0
+  },
+  "pooled": {
+    "invited": 50,
+    "registered_people": 50,
+    "disclosure_viewers": 40,
+    "question_submitters": 20,
+    "accepted_questions": 21,
+    "qualified_questions": 12,
+    "qualified_participants": 11,
+    "pending_questions": 3,
+    "clarification_questions": 4,
+    "excluded_questions": 2,
+    "qualified_conversion": 27.5,
+    "submission_conversion": 50,
+    "invitation_to_qualified": 22,
+    "question_qualification_rate": 57.142857142857146,
+    "registration_attempts": 51,
+    "duplicate_registration_attempts": 1,
+    "duplicate_registration_rate": 1.9607843137254901,
+    "ack_attempts": 3,
+    "ack_successes": 2,
+    "ack_success_rate": 66.66666666666667,
+    "sponsored_successes": 1,
+    "real_transactions": 0
+  },
+  "absolute_pp": 15,
+  "relative_improvement": 75
+}
+
+COMMAND: python server.py --check
+EXIT: 0
+127.0.0.1 - - [20/Oct/2026 22:37:42] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [20/Oct/2026 22:37:42] "GET /prototype/ HTTP/1.1" 200 -
+PASS HTTP /
+127.0.0.1 - - [20/Oct/2026 22:37:42] "GET /prototype/ HTTP/1.1" 200 -
+PASS HTTP /prototype/
+127.0.0.1 - - [20/Oct/2026 22:37:42] "GET /prototype/app.js HTTP/1.1" 200 -
+PASS HTTP /prototype/app.js
+127.0.0.1 - - [20/Oct/2026 22:37:42] "GET /prototype/domain.mjs HTTP/1.1" 200 -
+PASS HTTP /prototype/domain.mjs
+127.0.0.1 - - [20/Oct/2026 22:37:42] "GET /prototype/ui.mjs HTTP/1.1" 200 -
+PASS HTTP /prototype/ui.mjs
+127.0.0.1 - - [20/Oct/2026 22:37:42] "GET /prototype/product.mjs HTTP/1.1" 200 -
+PASS HTTP /prototype/product.mjs
+127.0.0.1 - - [20/Oct/2026 22:37:42] "GET /prototype/participant.mjs HTTP/1.1" 200 -
+PASS HTTP /prototype/participant.mjs
+127.0.0.1 - - [20/Oct/2026 22:37:42] "GET /prototype/evaluator.mjs HTTP/1.1" 200 -
+PASS HTTP /prototype/evaluator.mjs
+127.0.0.1 - - [20/Oct/2026 22:37:42] "GET /prototype/assets/evaluator-tool.svg HTTP/1.1" 200 -
+PASS HTTP /prototype/assets/evaluator-tool.svg
+127.0.0.1 - - [20/Oct/2026 22:37:42] "GET /prototype/styles.css HTTP/1.1" 200 -
+PASS HTTP /prototype/styles.css
+127.0.0.1 - - [20/Oct/2026 22:37:42] "GET /prototype/assets/profile.svg HTTP/1.1" 200 -
+PASS HTTP /prototype/assets/profile.svg
+127.0.0.1 - - [20/Oct/2026 22:37:42] "GET /prototype/assets/john.svg HTTP/1.1" 200 -
+PASS HTTP /prototype/assets/john.svg
+127.0.0.1 - - [20/Oct/2026 22:37:42] "GET /prototype/assets/maya.svg HTTP/1.1" 200 -
+PASS HTTP /prototype/assets/maya.svg
+127.0.0.1 - - [20/Oct/2026 22:37:42] "GET /prototype/assets/avery.svg HTTP/1.1" 200 -
+PASS HTTP /prototype/assets/avery.svg
+127.0.0.1 - - [20/Oct/2026 22:37:42] "GET /prototype/assets/sam.svg HTTP/1.1" 200 -
+PASS HTTP /prototype/assets/sam.svg
+127.0.0.1 - - [20/Oct/2026 22:37:42] "GET /prototype/assets/suncrest-network.svg HTTP/1.1" 200 -
+PASS HTTP /prototype/assets/suncrest-network.svg
+127.0.0.1 - - [20/Oct/2026 22:37:42] "GET /measurement/metrics.mjs HTTP/1.1" 200 -
+PASS HTTP /measurement/metrics.mjs
+127.0.0.1 - - [20/Oct/2026 22:37:42] "GET /data/experiment.synthetic.json HTTP/1.1" 200 -
+PASS HTTP /data/experiment.synthetic.json
+127.0.0.1 - - [20/Oct/2026 22:37:42] "GET /directive.md HTTP/1.1" 200 -
+PASS HTTP /directive.md
+127.0.0.1 - - [20/Oct/2026 22:37:42] code 404, message Not Found
+127.0.0.1 - - [20/Oct/2026 22:37:42] "GET /.git/config HTTP/1.1" 404 -
+PASS blocked /.git/config
+127.0.0.1 - - [20/Oct/2026 22:37:42] code 404, message Not Found
+127.0.0.1 - - [20/Oct/2026 22:37:42] "GET /%2Egit/config HTTP/1.1" 404 -
+PASS blocked /%2Egit/config
+127.0.0.1 - - [20/Oct/2026 22:37:42] code 404, message Directory listing disabled
+127.0.0.1 - - [20/Oct/2026 22:37:42] "GET /data/ HTTP/1.1" 404 -
+PASS blocked /data/

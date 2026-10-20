@@ -32,7 +32,7 @@ Questions can be revised only after needs-clarification review. The prior versio
 ```powershell
 node measurement/generate-fixtures.mjs
 node measurement/verify.mjs
-node --test tests/artifacts.test.mjs tests/domain.test.mjs tests/metrics.test.mjs tests/product.test.mjs tests/ui.test.mjs tests/participant.test.mjs tests/evaluator.test.mjs
+node --test tests/artifacts.test.mjs tests/domain.test.mjs tests/metrics.test.mjs tests/product.test.mjs tests/ui.test.mjs tests/participant.test.mjs tests/evaluator.test.mjs tests/handoff.test.mjs
 node --check prototype/app.js
 node --check prototype/domain.mjs
 node --check prototype/ui.mjs
@@ -49,6 +49,7 @@ node --check tests/ui.test.mjs
 node --check tests/product.test.mjs
 node --check tests/participant.test.mjs
 node --check tests/evaluator.test.mjs
+node --check tests/handoff.test.mjs
 node --check tests/browser-harness.mjs
 python server.py --check
 git -C C:\Repos\MatchHire\submission diff --check
@@ -58,7 +59,7 @@ Generated files are deterministic. The experiment bundle has 50 primary people p
 
 ## Evaluator artifacts
 
-- [intent.md](intent.md) and [directive.md](directive.md) are review drafts; Loom/final access evidence remains pending.
+- [intent.md](intent.md) records problem selection; [directive.md](directive.md) provides final working instructions and the evaluator handoff. Loom/verified reviewer access remains pending.
 - [Journey/rules](docs/journey-and-rules.md), [PRD](docs/prd.md), [five-task backlog](docs/backlog.md)
 - [Dataset/equations](measurement/README.md), [email experiment](docs/experiment.md), [weekly decision memo](docs/weekly-decision-memo.md)
 - [Verification evidence](evidence/verification.md)
