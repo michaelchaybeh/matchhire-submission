@@ -23,7 +23,7 @@ Use synthetic personas and local deterministic records only. No external sending
 - [Verification commands, actual outcomes and corrections](evidence/verification.md)
 - [Problem selection and AI/provenance disclosure](intent.md)
 
-The source is local and not publicly deployed. Reviewer repository access has not been granted or independently tested. Relative links are provided for local/repository review; they are not claims of externally accessible hosted artifacts.
+The implemented source is available through this [private review link](https://github.com/michaelchaybeh/matchhire-submission/tree/review/qualified-participation-mvp), at reviewed commit `72d934bdd64afb75619f491a0972fbc1c10383e1`. This is not a verified evaluator-accessible link. The prototype is not publicly deployed, and hiring-team access remains unverified. Relative artifact links support local/repository review. The current local documentation corrections are not yet committed or reflected in the private review link.
 
 ### Measurement result
 
@@ -38,7 +38,7 @@ Actual verification: 42 automated tests passed, eight module syntax checks passe
 ### Final evidence placeholders — not completed
 
 - **Loom ≤5 minutes:** OWNER TO RECORD / INSERT VERIFIED LINK. Cover problem selection, live result, important correction/check, AI role, personal decisions and limitations.
-- **Final repository/commit or private artifact access:** OWNER TO AUTHORIZE GIT/SHARING AND VERIFY REVIEWER ACCESS. No new commit or hosted link is fabricated.
+- **Verified hiring-team access to final repository/commit or private artifacts:** OWNER TO AUTHORIZE ANY REQUIRED SHARING AND VERIFY REVIEWER ACCESS. The private review link above does not complete this checkpoint.
 - **Quest acceptance and exact cutoff/timezone:** OWNER TO CONFIRM FROM INVITATION. The illustrative fixture window is unrelated to the deadline.
 - **Actual focused candidate effort, including documentation/Loom:** OWNER TO RECORD. No retroactive time estimate is presented as measured effort.
 - **Final acceptance/submission:** separate Product Owner authorization required. Nothing has been submitted.

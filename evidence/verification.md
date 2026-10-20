@@ -40,3 +40,16 @@ No real user, interview, email, payment or chain action was tested. Synthetic re
 Human focused effort was not timed; the planning estimate is not actual effort. Loom, exact acceptance/deadline/timezone, final reviewer access and final Quest submission remain owner checkpoints. No deployed or transaction links are fabricated. Preview server started for this walkthrough was stopped after checks.
 
 Final boundary verification: both repository HEADs and branches are unchanged; nothing is staged, committed, pushed, merged, synchronized or deployed. Internal changes are AGENTS.md plus four approved vault documents; submission changes are README.md plus 36 new assessment files. Pre-existing internal prototype files are unchanged. All three source/vault copies match SHA-256. Obsidian’s ignored workspace.json changed during the session; this task did not write it, and no other pre-existing vault settings/files changed. Existing source Downloads were preserved.
+
+## 20 October 2026 (KST) — Subsequent private review checkpoint
+
+The original implementation verification recorded above preceded creation of the GitHub review commits. Its test results and pre-commit boundary statements remain a historical record of that earlier checkpoint.
+
+At the subsequent, separately authorized GitHub review checkpoint:
+
+- Submission branch `review/qualified-participation-mvp` was pushed privately at commit `72d934bdd64afb75619f491a0972fbc1c10383e1`.
+- Internal documentation branch `review/mvp-documentation-20261019` was pushed privately at commit `1c86852d97d783f616986a51289ab078cb65b31a`.
+- Both `main` branches remained unchanged at that checkpoint.
+- No merge, deployment or assessment submission occurred.
+
+This dated clarification does not replace or rerun the original verification. The current documentation correction pass checks document links and Git diff whitespace only; it does not rerun the application regression suite, module syntax checks, data reconciliation, HTTP checks or browser walkthrough. These documentation corrections remain local and uncommitted.

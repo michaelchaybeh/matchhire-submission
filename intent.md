@@ -21,11 +21,20 @@ The first option connects a visible participant action to a useful operating out
 
 Participants need context, a clear reference and wallet-free participation. Returning people need aliases resolved correctly. Reviewers need criteria that permit critical inquiry and distinguish vague questions from useful questions. Operations needs deduplicated people and next actions; evaluators need replayable failure cases and exact calculations.
 
-Evidence comes from the supplied fictional Quest, the approved product requirements and executable checks of this synthetic implementation. The owner’s pre-existing exploratory wireframe established reusable interaction patterns and exposed certificate/off-chain-finalization corrections during prior review. That is design/engineering evidence, not a real-user study. No interviews, observed conversion baseline or outside market evidence is claimed.
+Implementation evidence comes from the supplied fictional Quest, the approved product requirements and executable checks of this synthetic implementation. The owner’s pre-existing exploratory wireframe established reusable interaction patterns and exposed certificate/off-chain-finalization corrections during prior review. That is design/engineering evidence, not a real-user study. The external case studies below add industry context; no interviews or observed conversion baseline for this product are claimed.
 
 The product hypothesis is that section-specific guidance plus visible review/follow-up lowers uncertainty. The illustrative baseline/variant (20% and 35%) are chosen fixtures for testing measurement, not forecasts or evidence of causal uplift. The primary metric is distinct eligible canonical disclosure viewers with ≥1 currently qualified question / distinct eligible canonical disclosure viewers.
 
 Immediate saved reference and visible disposition provide nonfinancial value without making wallets, KYC, positive sentiment or raw volume prerequisites. Meaningful value is an actionable inquiry and subsequent response path, not proof of assets or guaranteed business returns.
+
+## External industry evidence
+
+Sources verified on 20 October 2026. This research adds context to the already-approved bottleneck choice and preserves the Product Owner’s comparison and reasoning above.
+
+- **First-party case-study claims:** Galxe’s [How daGama Built Seasonal Growth on Galxe](https://www.galxe.com/blog/how-dagama-built-seasonal-growth-on-galxe) (30 March 2026) reports 130K+ participations across seasonal campaigns, separately reports 8,177 participants and 4,370 contributors, and describes contribution analytics and anti-cheat controls. Gitcoin’s [GG24 OSS QF on Giveth Retrospective](https://gitcoin.co/case-studies/gg24-oss-qf-giveth-retrospective) (27 November 2025) reports 3,042 donations from 1,286 unique donors and identifies clearer eligibility and standardized review guidance as operational improvements. These are the providers’ own accounts, not independently audited findings.
+- **Real industry observations and our interpretation:** These published accounts of actual Web3 programs distinguish actions from people or contributors and discuss participation integrity. We interpret them as support for measuring useful contributions with explicit eligibility, identity and review rules instead of treating raw activity as the outcome. Their program-specific totals and definitions do not transfer to Suncrest.
+- **Our product hypothesis:** Referenced questions plus visible, reasoned review and follow-up may reduce uncertainty and encourage meaningful inquiry. This remains a hypothesis; neither case study tests this MVP or proves that it increases qualified questions.
+- **Synthetic conversion assumptions:** The 20% control, 35% variant, 27.5% pooled conversion, +15 percentage points and +75% relative difference come from chosen synthetic fixtures. They are not industry benchmarks, observed customer results or forecasts derived from these sources.
 
 ## Non-goals and provenance
 
