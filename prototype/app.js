@@ -24,7 +24,7 @@ function notebook(){
 function render({focusMain=true}={}){
   const p=model.participant(state);let content='';
   const mode=page==='queue'?'reviewer':page==='dashboard'?'measurement':'participant';
-  const signpost=$('#mode-indicator');signpost.dataset.mode=mode;signpost.textContent=mode==='reviewer'?'Reviewer mode · Decisions and operational follow-up':mode==='measurement'?'Measurement mode · Synthetic snapshot and separate live QA':'Participant mode · Suncrest community review';
+  const signpost=$('#mode-indicator');signpost.dataset.mode=mode;signpost.hidden=page==='join';signpost.textContent=page==='join'?'':mode==='reviewer'?'Reviewer mode · Decisions and operational follow-up':mode==='measurement'?'Measurement mode · Synthetic snapshot and separate live QA':'Participant mode · Suncrest community review';
   document.querySelectorAll('.tabs [data-action]').forEach(button=>{if(button.dataset.action===({participant:'journey',reviewer:'queue',measurement:'dashboard'})[mode])button.setAttribute('aria-current','page');else button.removeAttribute('aria-current');});
   if(page==='join')content=product.homepage();
   if(page==='eligibility')content=product.eligibility(state,p,ownQuestions());
