@@ -52,4 +52,4 @@ At the subsequent, separately authorized GitHub review checkpoint:
 - Both `main` branches remained unchanged at that checkpoint.
 - No merge, deployment or assessment submission occurred.
 
-This dated clarification does not replace or rerun the original verification. The current documentation correction pass checks document links and Git diff whitespace only; it does not rerun the application regression suite, module syntax checks, data reconciliation, HTTP checks or browser walkthrough. These documentation corrections remain local and uncommitted.
+This dated clarification does not replace or rerun the original verification. The 20 October 2026 documentation correction pass checked document links and Git diff whitespace only; it did not rerun the application regression suite, module syntax checks, data reconciliation, HTTP checks or browser walkthrough. The corrections were local and uncommitted when those checks ran and were subsequently committed and pushed to the private `review/mvp-final-documentation-20261020` branch under separate Product Owner authorization.

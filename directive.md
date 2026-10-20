@@ -23,7 +23,7 @@ Use synthetic personas and local deterministic records only. No external sending
 - [Verification commands, actual outcomes and corrections](evidence/verification.md)
 - [Problem selection and AI/provenance disclosure](intent.md)
 
-The implemented source is available through this [private review link](https://github.com/michaelchaybeh/matchhire-submission/tree/review/qualified-participation-mvp), at reviewed commit `72d934bdd64afb75619f491a0972fbc1c10383e1`. This is not a verified evaluator-accessible link. The prototype is not publicly deployed, and hiring-team access remains unverified. Relative artifact links support local/repository review. The current local documentation corrections are not yet committed or reflected in the private review link.
+The implemented source and documentation are available through this [private review link](https://github.com/michaelchaybeh/matchhire-submission/tree/review/mvp-final-documentation-20261020). This is not a verified evaluator-accessible link. The prototype is not publicly deployed, and hiring-team access remains unverified. Relative artifact links support local/repository review.
 
 ### Measurement result
 
