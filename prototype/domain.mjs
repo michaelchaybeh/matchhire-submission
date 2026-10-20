@@ -90,6 +90,7 @@ export function reviewQuestion(state,id,{decision,reason_code,reason_note,criter
   }
   const record={decision,reason_code,reason_note:reason_note.trim(),section_id:q.disclosure_section_id,reviewed_at:new Date().toISOString(),reviewer_fixture_id:'SYN-REVIEWER-01',version:q.version,criteria:{...criteria}};
   q.review_status=decision;q.review_reason=record;q.review_history.push(record);
+  if(decision==='qualified'&&q.followup_status==='unassigned'&&q.followup_owner==='Unassigned'&&['Await synthetic review','Review revised evidence question','Await review or disposition','Participant to clarify referenced gap'].includes(q.next_action))q.next_action='Assign a synthetic owner and next follow-up action';
   if(decision!=='qualified'){q.followup_status='unassigned';q.followup_owner='Unassigned';q.next_action=decision==='needs_clarification'?'Participant to clarify referenced gap':'Await review or disposition';}
   event(state,'question_reviewed',{canonical_participant_id:q.canonical_participant_id,question_id:id,...record});return q;
 }
@@ -130,6 +131,8 @@ export function continueOffchain(state,id,source='continue_off_chain') {
 }
 export function certificateRecord(state,id) {
   const q=question(state,id);if(q.acknowledgement!=='success')fail('Certificates require a successful demo acknowledgement for this version.');
-  return {demo:true,participant:participant(state,q.canonical_participant_id).persona_label,project:'Suncrest Protocol',question_id:id,version:q.version,activity:'Question submitted; qualification is a separate reviewer decision',acknowledgement:'Successful demo outcome; no real transaction',txid:null,explorer_url:null};
+  const attempt=state.ack_attempts.findLast(a=>a.question_id===id&&a.question_version===q.version&&a.canonical_participant_id===q.canonical_participant_id&&a.outcome==='success'&&a.real_transaction===false);
+  if(!attempt)fail('A successful demo acknowledgement attempt for this question and version is required.');
+  return {demo:true,participant:participant(state,q.canonical_participant_id).persona_label,canonical_participant_id:q.canonical_participant_id,project:'Suncrest Protocol',question_id:id,version:q.version,review_status:q.review_status,attempt_id:attempt.attempt_id,acknowledged_at:attempt.at,activity:'Question submitted; qualification is a separate reviewer decision',acknowledgement:'Successful demo outcome; no real transaction',txid:null,explorer_url:null};
 }
 export function completeSession(state) {event(state,'session_completed',{real_transactions:0});}
