@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFile,access} from 'node:fs/promises';
+import {readFile,access,readdir} from 'node:fs/promises';
 import * as model from '../prototype/domain.mjs';
 import {metrics} from '../measurement/metrics.mjs';
 import * as ui from '../prototype/ui.mjs';
@@ -14,6 +14,19 @@ test('five illustrated account rows preserve all fixture mappings and registrati
   for(const person of ui.personas){l.register(person.alias);assert.equal(l.state().active_participant_id,person.id);assert.equal(l.state().events.filter(e=>e.event_type==='registration_attempted').at(-1).alias_token,person.alias);assert.equal(l.get('accounts').open,false);assert(l.get('identity').innerHTML.includes(person.name));assert.doesNotMatch(l.get('identity').innerHTML,/L-JOHN|L-MAYA|L-SAM|L-AVERY|\(synthetic\)/);}
   assert.equal(new Set(l.state().registrations.map(r=>r.canonical_participant_id)).size,4);
 });
+test('account rows pair one readable status with each local icon and distinguish the returning alias',()=>{
+  const rows=[...product.accounts().matchAll(/<button type="button" class="account-row" data-action="register" data-id="([^"]+)">([\s\S]*?)<\/button>/g)];assert.equal(rows.length,5);
+  for(const [index,[,alias,markup]]of rows.entries()){
+    const person=ui.personas[index];assert.equal(alias,person.alias);assert(markup.includes('assets/'+person.portrait+'.svg'));assert(markup.includes(person.name));assert.equal((markup.match(/Invitation (?:approved|pending)/g)||[]).length,1);assert.equal((markup.match(/Identity (?:not verified|verified \(demo\))/g)||[]).length,1);assert.doesNotMatch(markup,/account-icons|[✓◆◌◷↻]/);
+    assert(markup.includes('icons/lucide/'+(alias==='sam-waiting'?'clock':'circle-check')+'.svg'));assert(markup.includes('icons/lucide/'+(alias==='maya-primary'?'shield-check':'shield')+'.svg'));for(const [,attributes]of markup.matchAll(/<img class="account-icon" ([^>]+)>/g)){assert(attributes.includes('alt=""'));assert(attributes.includes('aria-hidden="true"'));}
+    assert.equal(markup.includes('rotate-ccw-clock.svg'),person.returning);assert.equal(markup.includes('Returning</span>'),person.returning);if(person.returning)assert(markup.includes('Resume John’s saved questions'));
+  }
+});
+test('chooser vendors only five safe SVG assets with upstream license and attribution',async()=>{
+  const folder=new URL('prototype/assets/icons/lucide/',root);assert.deepEqual((await readdir(folder)).filter(name=>name.endsWith('.svg')).sort(),['circle-check.svg','clock.svg','rotate-ccw-clock.svg','shield-check.svg','shield.svg']);for(const name of ['circle-check','shield-check','shield','rotate-ccw-clock','clock']){const svg=await readFile(new URL(name+'.svg',folder),'utf8');assert.match(svg,/viewBox="0 0 24 24"/);assert.match(svg,/stroke-width="2"/);assert.doesNotMatch(svg,/<script|<foreignObject|<image\b|onload=|href=/);}
+  const license=await readFile(new URL('LICENSE',folder),'utf8');for(const notice of ['ISC License','Lucide Icons and Contributors','The MIT License (MIT)','Cole Bemis'])assert(license.includes(notice));const attribution=await readFile(new URL('README.md',folder),'utf8');assert(attribution.includes('c29c276f16590cf017126671535ad8c792be64d8'));assert(attribution.includes('[LICENSE](LICENSE)'));
+});
+
 test('returning John resumes saved work without double-counting and Avery stays distinct',async()=>{
   const l=await questionLab(undefined,{wallet:false});l.click('offchain');l.click('queue');qualify(l);l.register('john-returning-alias');assert.match(l.html(),/Welcome back, John/);assert.match(l.html(),/one saved question/);assert.doesNotMatch(l.html(),/Canonical identity|fixed synthetic fixture|Choose another fixture/);l.click('disclosure');assert.equal(metrics(l.state(),{includeQA:true}).disclosure_viewers,1);assert.equal(l.state().questions.length,1);l.register('avery-primary');l.click('disclosure');assert.equal(metrics(l.state(),{includeQA:true}).disclosure_viewers,2);assert.equal(metrics(l.state(),{includeQA:true}).qualified_participants,1);
 });
