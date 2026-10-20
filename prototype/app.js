@@ -101,6 +101,7 @@ const actions={
   retry(){model.retryAcknowledgement(state,currentId);page='saved';render();openAck(true);},
   offchain(){offchain('continue_off_chain');},dismiss(){offchain('dismiss_button');},
   revise(){const q=qCurrent();editingId=q.question_id;draftEdits.set(state.active_participant_id,editingId);model.saveDraft(state,q.text,q.disclosure_section_id);page='question';render();},
+  'clarify-question'(id){const q=ownQuestions().find(q=>q.question_id===id);if(!q||q.review_status!=='needs_clarification')throw Error('Select your question that needs clarification.');currentId=id;actions.revise();},
   'show-question'(id){const q=ownQuestions().find(q=>q.question_id===id);if(!q)throw Error('Select the participant who owns this question.');currentId=id;editingId=null;page='confirmation';render();},
   'show-current'(){const q=ownQuestions().at(-1);if(q){currentId=q.question_id;page='confirmation';}else page=state.active_participant_id?'eligibility':'join';render();},
   certificate(id){if(!ownQuestions().some(q=>q.question_id===id))throw Error('Select the participant who owns this question.');const c=model.certificateRecord(state,id);$('#certificate-content').innerHTML=certificateMarkup(c);$('#certificate').showModal();}

@@ -32,11 +32,12 @@ Questions can be revised only after needs-clarification review. The prior versio
 ```powershell
 node measurement/generate-fixtures.mjs
 node measurement/verify.mjs
-node --test tests/artifacts.test.mjs tests/domain.test.mjs tests/metrics.test.mjs tests/product.test.mjs tests/ui.test.mjs
+node --test tests/artifacts.test.mjs tests/domain.test.mjs tests/metrics.test.mjs tests/product.test.mjs tests/ui.test.mjs tests/participant.test.mjs
 node --check prototype/app.js
 node --check prototype/domain.mjs
 node --check prototype/ui.mjs
 node --check prototype/product.mjs
+node --check prototype/participant.mjs
 node --check measurement/metrics.mjs
 node --check measurement/generate-fixtures.mjs
 node --check measurement/verify.mjs
@@ -45,6 +46,7 @@ node --check tests/metrics.test.mjs
 node --check tests/artifacts.test.mjs
 node --check tests/ui.test.mjs
 node --check tests/product.test.mjs
+node --check tests/participant.test.mjs
 node --check tests/browser-harness.mjs
 python server.py --check
 git -C C:\Repos\MatchHire\submission diff --check

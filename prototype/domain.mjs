@@ -102,9 +102,14 @@ export function setFollowup(state,id,{status,owner,next_action}) {
   q.followup_status=status;q.followup_owner=owner.trim();q.next_action=next_action.trim();event(state,'followup_status_changed',{canonical_participant_id:q.canonical_participant_id,question_id:id,status,owner:q.followup_owner,next_action:q.next_action});
 }
 export function setKyc(state,status) {const p=active(state);if(!['verified','not_verified'].includes(status))fail('Unknown synthetic KYC status.');p.kyc_demo_status=status;event(state,'kyc_scenario_changed',{status,eligibility_unchanged:true});}
+export function sponsorshipAllowance(state,id=state.active_participant_id) {
+  const p=participant(state,id)||fail('Choose a synthetic participant first.');
+  const used=state.ack_attempts.filter(a=>a.canonical_participant_id===p.canonical_participant_id&&a.outcome==='success'&&a.sponsored_demo).length;
+  return {used,limit:2,remaining:Math.max(0,2-used)};
+}
 export function gasPolicy(state,id) {
   const q=question(state,id);const p=participant(state,q.canonical_participant_id);
-  const used=state.ack_attempts.filter(a=>a.canonical_participant_id===p.canonical_participant_id&&a.outcome==='success'&&a.sponsored_demo).length;
+  const {used}=sponsorshipAllowance(state,p.canonical_participant_id);
   const alreadySponsored=state.ack_attempts.some(a=>a.question_id===id&&a.outcome==='success'&&a.sponsored_demo);
   if(p.kyc_demo_status!=='verified')return {code:'self_funded_unverified',sponsored:false,used,limit:2,message:'Without KYC verification, an actual on-chain acknowledgement would require participant-funded network fees. No fees are processed here.'};
   if(used>=2||alreadySponsored)return {code:'self_funded_limit',sponsored:false,used,limit:2,message:'Sponsorship unavailable: two successes per canonical person/session, one per distinct question. An actual transaction would require participant-funded fees; off-chain remains available.'};

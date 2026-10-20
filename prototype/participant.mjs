@@ -1,0 +1,52 @@
+// Read-only participant presentation derived from the canonical local-session model.
+import * as model from './domain.mjs';
+import {label,personaFor,ownerLabel,nextActionValue,meaningfulDraft} from './ui.mjs';
+const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const icon=name=>'<img class="participation-icon" src="assets/icons/lucide/'+name+'.svg" alt="" aria-hidden="true">';
+const action=(name,text,id='',secondary=false)=>'<button type="button" class="button'+(secondary?' secondary':'')+'" data-action="'+name+'"'+(id?' data-id="'+esc(id)+'"':'')+'>'+text+'</button>';
+export function displayDate(value,withTime=false){const date=new Date(value);return value&&Number.isFinite(date.getTime())?new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'short',year:'numeric',...(withTime?{hour:'2-digit',minute:'2-digit',second:'2-digit'}:{}),timeZone:'UTC'}).format(date)+(withTime?' UTC':''):'Date unavailable';}
+function timestamp(value,withTime=false){return '<time'+(value&&Number.isFinite(new Date(value).getTime())?' datetime="'+esc(value)+'"':'')+'>'+esc(displayDate(value,withTime))+'</time>';}
+function acknowledgement(state,q){
+  let receipt=null;try{receipt=model.certificateRecord(state,q.question_id);}catch{/* No receipt without a successful current-version record. */}
+  if(receipt)return {kind:'success',text:'Recorded successfully (demo)',receipt};
+  if(q.acknowledgement==='failed')return {kind:'failed',text:'Failed'+(q.wallet_decision==='off_chain'?' · Continued off-chain':''),receipt:null};
+  if(q.acknowledgement==='skipped'||q.wallet_decision==='off_chain')return {kind:'skipped',text:'Skipped / continued off-chain',receipt:null};
+  return {kind:'pending',text:'Not recorded',receipt:null};
+}
+export function participationView(state,p=model.participant(state)){
+  if(!p)return null;
+  const person=personaFor(p),id=p.canonical_participant_id;
+  const questions=state.questions.filter(q=>q.canonical_participant_id===id&&q.accepted===true).map((q,index)=>({
+    id:q.question_id,number:index+1,text:q.text,preview:q.text.length>130?q.text.slice(0,130)+'…':q.text,
+    topic:model.SECTIONS.find(s=>s.id===q.disclosure_section_id)?.title||'Topic unavailable',submittedAt:q.submitted_at,version:q.version,
+    review:label(q.review_status),reviewStatus:q.review_status,explanation:q.review_reason?.reason_note||'',
+    acknowledgement:acknowledgement(state,q),owner:q.followup_owner&&q.followup_owner!=='Unassigned'?ownerLabel(q.followup_owner):'',
+    followup:q.followup_status==='unassigned'?'Not yet assigned':label(q.followup_status),nextAction:nextActionValue(state,q)
+  }));
+  const references=new Map(questions.map(q=>[q.id,q.number]));
+  const activity=state.events.filter(e=>e.canonical_participant_id===id&&references.has(e.question_id)).flatMap((e,index)=>{
+    let text='';
+    if(e.event_type==='question_submitted')text='Question submitted';
+    if(e.event_type==='question_revised')text='Question revised';
+    if(e.event_type==='question_reviewed'&&['pending_review','qualified','needs_clarification','excluded'].includes(e.decision))text=e.decision==='needs_clarification'?'Clarification requested':'Review decision recorded · '+label(e.decision);
+    if(e.event_type==='acknowledgement_result'&&['success','failure'].includes(e.outcome))text=e.outcome==='success'?'Acknowledgement recorded (demo)':'Acknowledgement failed (demo)';
+    if(e.event_type==='followup_status_changed'&&['unassigned','triaged','response_pending','addressed'].includes(e.status))text='Follow-up status changed · '+label(e.status);
+    return text?[{text,questionNumber:references.get(e.question_id),at:e.occurred_at,index}]:[];
+  }).sort((a,b)=>(new Date(a.at).getTime()||0)-(new Date(b.at).getTime()||0)||a.index-b.index);
+  return {name:person?.first||'Participant',portrait:person?.portrait||'profile',eligible:p.eligible&&p.invitation_status==='approved',verified:p.kyc_demo_status==='verified',
+    counts:{submitted:questions.length,qualified:questions.filter(q=>q.reviewStatus==='qualified').length,acknowledged:questions.filter(q=>q.acknowledgement.receipt).length},
+    questions,activity,connected:state.wallet_connections.includes(id),allowance:model.sponsorshipAllowance(state,id),
+    hasDraft:meaningfulDraft(state.drafts[id]),viewed:state.events.some(e=>e.canonical_participant_id===id&&e.event_type==='disclosure_opened')};
+}
+function acknowledgementMarkup(a){
+  const symbol=a.kind==='success'?icon('circle-check'):a.kind==='pending'?icon('clock'):'<svg class="participation-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="'+(a.kind==='failed'?'m8 8 8 8M16 8l-8 8':'M7 12h10')+'"/></svg>';
+  return '<span class="participation-ack '+a.kind+'">'+symbol+esc(a.text)+'</span>';
+}
+function questionMarkup(q){
+  const fields=[['Disclosure topic',esc(q.topic)],['Submitted',timestamp(q.submittedAt,true)],['Current version',esc(q.version)],['Review decision',esc(q.review)],['Follow-up owner',esc(q.owner||'Follow-up not yet assigned')],['Follow-up status',esc(q.followup)],['Next action',esc(q.nextAction||'Awaiting reviewer action')],['Acknowledgement',acknowledgementMarkup(q.acknowledgement)]];
+  return '<details class="participation-question"><summary><span class="participation-reference">Question '+q.number+' — '+esc(q.topic)+'</span><span class="participation-preview">'+esc(q.preview)+'</span><span class="participation-submitted">Submitted '+timestamp(q.submittedAt)+'</span><span class="participation-statuses"><span>Review: <strong class="review-'+esc(q.reviewStatus)+'">'+esc(q.review)+'</strong></span><span>Acknowledgement: '+acknowledgementMarkup(q.acknowledgement)+'</span><span>Follow-up: '+esc(q.followup)+'</span></span></summary><div class="participation-question-body"><h3>Full question</h3><p class="participation-full-text">'+esc(q.text)+'</p><dl class="participation-details">'+fields.map(([name,value])=>'<div><dt>'+name+'</dt><dd>'+value+'</dd></div>').join('')+'</dl>'+(q.explanation?'<div class="participation-review-note"><h3>Reviewer explanation</h3><p>'+esc(q.explanation)+'</p></div>':'')+'<div class="participation-question-actions">'+action('show-question','View Question',q.id,true)+(q.reviewStatus==='needs_clarification'?action('clarify-question','Clarify this question',q.id,true):'')+(q.acknowledgement.receipt?action('certificate','View Participation Receipt',q.id,true):'')+'</div></div></details>';
+}
+export function participantDashboard(state,p){
+  const v=participationView(state,p);if(!v)return '';
+  return '<article class="panel participant-dashboard" aria-labelledby="participant-title"><div class="participation-fixed"><div class="participation-profile"><img class="avatar" src="assets/'+v.portrait+'.svg" alt=""><div><span class="eyebrow">SUNCREST PARTICIPATION</span><h1 id="participant-title">'+((v.questions.length?'Welcome back, ':'Welcome, ')+esc(v.name))+'</h1><div class="participation-profile-statuses"><span>'+icon(v.eligible?'circle-check':'clock')+(v.eligible?'Invitation approved':'Invitation pending')+'</span><span>'+icon(v.verified?'shield-check':'shield')+(v.verified?'Identity verified (demo)':'Identity verification not completed')+'</span></div></div></div><div class="participation-summary" aria-label="Your Suncrest contributions">'+[['Questions submitted',v.counts.submitted],['Qualified questions',v.counts.qualified],['Acknowledgements recorded',v.counts.acknowledged]].map(([name,count])=>'<div><strong>'+count+'</strong><span>'+name+'</span></div>').join('')+'</div><div class="participation-wallet"><strong>'+ (v.connected?'Wallet connected (demo)':'Wallet not connected')+'</strong><span>'+(v.verified?'Sponsored acknowledgements: '+v.allowance.remaining+' of '+v.allowance.limit+' remaining':'Sponsored transaction fees are available to eligible KYC-verified participants.')+'</span></div>'+(v.eligible?'<p class="participation-guidance">'+(v.hasDraft?'Your draft is saved. Review the disclosure to resume.':'Questions can be submitted and qualified without a wallet or KYC.')+'</p>':"<p class=\"participation-guidance\">Your invitation is still pending. You're welcome to read the disclosure; question submission is unavailable until approval.</p>")+'<div class="participation-actions">'+action('disclosure','Review Project Disclosure')+(v.eligible&&v.questions.length&&v.viewed&&!v.hasDraft?action('another','Ask Another Question','',true):'')+'</div><p class="participation-scroll-hint" id="participation-scroll-hint">Questions and activity below · Scroll to explore ↓</p></div><div class="participant-scroll" id="participant-scroll" tabindex="0" role="region" aria-label="Your questions and activity" aria-describedby="participation-scroll-hint"><section aria-labelledby="my-questions-title"><div class="participation-section-heading"><h2 id="my-questions-title">My Questions</h2><span>'+v.questions.length+(v.questions.length===1?' question':' questions')+'</span></div>'+(v.questions.length?v.questions.map(questionMarkup).join(''):'<div class="participation-empty"><h3>Your contribution starts with a question.</h3><p>No questions submitted yet. '+(v.eligible?'Review the disclosure and ask for the evidence you would like to see.':'You can explore the disclosure while your invitation is pending.')+'</p></div>')+'</section><section class="participation-activity" aria-labelledby="recent-activity-title"><h2 id="recent-activity-title">Recent Activity</h2>'+(v.activity.length?'<p class="small">Contribution milestones · Oldest first</p><ol>'+v.activity.map(e=>'<li><div><strong>'+esc(e.text)+'</strong><span>Question '+e.questionNumber+'</span></div>'+timestamp(e.at,true)+'</li>').join('')+'</ol>':'<p class="small">No contribution milestones yet.</p>')+'</section><p class="participation-limits">Demo acknowledgements are separate from question qualification and do not establish ownership, reserves or returns. Follow-up shown here is a local scenario; no external communication or gas payment occurs.</p></div></article>';
+}
