@@ -1,32 +1,52 @@
-# Weekly operating decision memo — simulated week 1
+# Weekly operating decision memo — synthetic week 1
 
-Fixture window: 19–25 October 2026. Prepared from synthetic records; this is not a report of an elapsed real operating week. No campaign, interview or live-user result occurred.
+Asset Market Cap's participation capability; Suncrest Protocol is the fictional disclosure example. Fixture window: **19–25 October 2026**. This memo is revised after the prototype using the same synthetic records; it is not a report of an elapsed real operating week. No campaign, interview, user validation or real transaction occurred.
 
-**Decision: CHANGE the validation plan; do not declare an experiment winner.** Retain wallet-free submission and visible review/follow-up, tighten clarification guidance, then seek approval for moderated usability validation before considering a real campaign.
+## Decision
+
+**CHANGE the validation plan; do not declare an experiment winner.** I would retain wallet-free contribution and visible reasoned review, prepare clearer section-specific clarification guidance, and request approval for moderated usability validation before considering a real campaign. This is a simulation-based operating recommendation, not authorization to recruit, send, deploy or spend.
 
 ## What the records show
 
-Fifty primary canonical invitations produce 40 eligible disclosure viewers. Control: 4 qualified people / 20 viewers = 20%. Variant: 7/20 = 35%. Pooled: 11/40 = 27.5%; absolute illustration +15pp, relative +75%. These are intentionally labelled fixtures. They do not demonstrate a causal email effect or product-market demand.
+| Measure | Control | Variant | Pooled |
+|---|---:|---:|---:|
+| Delivered synthetic invitations | 25 | 25 | 50 |
+| Eligible disclosure viewers | 20 | 20 | 40 |
+| Distinct submitters / accepted questions | 8 / 9 | 12 / 12 | 20 / 21 |
+| Qualified questions / qualified people | 5 / 4 | 7 / 7 | 12 / 11 |
+| Product qualified-viewer conversion | 20% | 35% | 27.5% |
+| Invitation-stage illustration | 16% | 28% | 22% |
 
-Control has 8 submitters, 9 accepted questions and 5 qualified questions; variant has 12 submitters, 12 accepted questions and 7 qualified questions. One control person has two qualified questions, explaining 12 questions versus 11 people overall. Three questions remain pending and four need clarification; two are excluded. Current adjudication, not historical peak qualification, determines conversion.
+The viewer-based illustration is +15pp and +75% relative. Twelve qualified questions come from eleven people because one control person has two. Three primary questions remain pending, four need clarification and two are excluded. Current adjudication determines the snapshot outcome, not historical peak qualification. Raw questions and qualified people are different measures.
 
-The primary cohort includes 51 registration attempts for 50 people; the extra alias resolves to an existing canonical ID. Two QA-only fixtures are disjoint from campaign metrics, including an ineligible adversarial record. Failure/alias fixtures do not add eligible viewers. Full exports have 52 people, 53 registrations, 23 questions and 250 events.
+The primary cohort has 51 registration attempts for 50 people, including an extra alias resolved to an existing person. Two QA-only people, including an ineligible adversarial record, are excluded. Full exports have 52 people, 53 registrations, 23 questions and 250 events. Three demo acknowledgement attempts on two questions include one failure, two successes and one sponsored success; **zero actual blockchain transactions** and no fees. Nineteen accepted primary questions have no successful demo acknowledgement. See [records and equations](../measurement/README.md#reconciled-fixture-totals).
 
-Three demo acknowledgement attempts include one failure and two successes on two questions, with one sponsored success and zero real transactions. Nineteen accepted primary questions have no successful acknowledgement. Wallet outcomes are downstream and do not define qualification. No fees were processed.
+## Interpretation and limits
 
-## Interpretation and risk
+The hypothesis is that a referenced question and visible review/next action reduce uncertainty. Chosen group sizes/outcomes cannot establish that explanation, demand, real reviewer quality or causal uplift. For example, synthetic `C-Q05` and `V-Q08` ask “Could you share more details about the project?” and need clarification; `C-Q01` asks who independently verifies monthly operating reports. These examples justify preparing clearer guidance for a usability test, not claiming users were confused in research. The [question export](../data/questions.synthetic.json) preserves their actual labels.
 
-The hypothesis is that visible review status and an actionable reference reduce uncertainty. The fixture cannot establish that explanation; group sizes and outcomes were chosen, not observed or randomized in a live population. Reviewer judgment and sampling uncertainty require validation. The higher raw submission count should not be treated as success independently of question usefulness.
+The future email decision metric is qualified people / eligible randomly assigned invitees; viewer conversion is diagnostic because email can change who visits. Existing 16%/28% invitation-stage arithmetic is not evidence that these synthetic people were randomized or contacted. Seed review records are simplified relative to the live checklist/history workflow; neither proves real operational quality.
 
-The proposed quality guardrail (>5pp below control while submissions rise) is not crossed: 58.33% variant question qualification versus 55.56% control. This is not a validated statistical boundary. Mandatory refusal, duplicate-identity and failure-recovery checks must pass before any release; detailed execution evidence is linked in [verification](../evidence/verification.md). No live sentiment-bias or fraud rate can be inferred from fixtures.
+The proposed quality investigation trigger (>5pp below control while submissions rise) is not crossed by 58.33% variant versus 55.56% control qualification. It remains an unvalidated planning trigger with sample/maturation/cadence decisions pending. No observed baseline or statistically justified winning threshold exists. The [PRD](prd.md#outcomes-and-provisional-planning-assumptions) proposes +5pp over a separately observed product baseline, 14 days plus 7 days maturation, and response expectations; none is achieved performance or a scheduled pilot.
 
-## Owners and next actions
+## Responsible roles and checkable next steps
 
-| Owner role (synthetic operating plan) | Next action |
-|---|---|
-| Engineering | Preserve save-before-wallet, identity/event invariants and independently reproducible calculations; inspect any recovery or denominator regression. |
-| Operations | Calibrate material/actionable/not-spam criteria using critical and supportive examples; assign a synthetic owner and investigable next action to qualified inquiries; review clarification reasons. |
-| Product | Refine section-specific guidance and review-status framing without financial incentives or suppression of critical questions. |
-| Next validation | Ask the Product Owner to approve moderated synthetic-task usability testing and, only later, a permissioned pilot with exact scope and stopping rules. No recruitment or sending is performed here. |
+These are proposed next actions, not completed work or assignments to named people. The pilot owner must be named before a pilot.
 
-Hold for real-transaction/fee claims, saved-question loss, refusal gating, unfair exclusions or unreconciled conversion. There is no basis here for scaling a campaign or announcing an uplift.
+| Role | Next output and completion condition | Dependency / escalation |
+|---|---|---|
+| Engineering | Produce a readiness comparison between intended event/recovery contracts and existing behavior; reconciliation and refusal/duplicate/failure evidence remain inspectable; identify unimplemented controls explicitly. | Uses measurement contract; report identity, saved-work or denominator defects to pilot owner. No source change is authorized by this memo. |
+| Operations | Prepare critical/supportive/clarification calibration examples, a follow-up owner/action handoff and an appeal-routing plan; flag proposed response capacity and unresolved calendar/authority. | Product resolves criteria ambiguity; pilot owner resolves capacity and coverage. These preparation outputs are not claimed completed. |
+| Product | Review section-specific guidance against examples; retain unchanged selection scores while confirming rationale; approve or revise the moderated test plan and pending policy details. | Requires readiness/calibration inputs; no recruitment before approval. |
+| Pilot owner | At the readiness checkpoint record continue-to-validation, change, or hold, with reasons and accountable actions. Consider identity/access, reviewer authority, event/cutoff controls, sample/timing and optional sponsorship separately. | No real pilot until its scope, capacity, remaining controls and authorization are explicit. |
+
+## Next decision checkpoint and hold conditions
+
+**Checkpoint:** after engineering readiness and operations calibration plans are available, before recruiting anyone for moderated validation. Product and the accountable pilot owner review the outputs and record a decision. No date is scheduled and no automatic elapsed-time approval applies.
+
+- Continue to moderated validation only with explicit approval, a clear synthetic-task plan, fair review examples and recorded limitations. Its results would be new evidence, not a restatement of this fixture.
+- Hold affected participation for wallet gating, saved-work loss, unfair exclusions or false transaction/fee claims. Freeze decisions for unreconciled identity/conversion; pause optional sponsorship separately for cost/abuse uncertainty.
+- Before a future email experiment, finalize assignment/sample criteria, eligibility and appeals, 14-day/7-day timing feasibility and reporting freeze; evaluate only at its predeclared mature-data checkpoint.
+- Resume only after the pilot owner records corrective evidence and operational review under [hold rules](journey-and-rules.md#operations-handoffs-and-holds).
+
+There is no evidence here supporting campaign scale or a real-world uplift announcement. Historical behavioral checks and their limits remain in [verification](../evidence/verification.md); this revision does not claim they were newly executed.

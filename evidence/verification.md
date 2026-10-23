@@ -108,3 +108,38 @@ The final directive now links the current private review branch, concrete local 
 This dated record is committed with the two corrections. To avoid a self-referential HEAD, the **final correction SHA and immutable commit permalink are supplied independently in the completion report**, together with post-push remote parity and clean-worktree verification. The stable review-branch link above locates the committed record but is not proof of hiring-team access or final Product Owner approval.
 
 No main/internal/other-branch changes, merge, deployment, outreach, access grant, real transaction or Quest submission are part of this correction pass.
+
+
+## 23 October 2026 (KST) — Product documentation revision
+
+This checkpoint was appended after actual documentation verification. The nine revised product/handoff documents and this append-only checkpoint implement the authorized D1–D8 direction and provisional P1–P3 assumptions. They were revised after the prototype; no pre-build requirements chronology or new behavioral acceptance is claimed.
+
+### Baseline and authorized scope
+
+The checked-out branch was `review/product-experience-20261020`, HEAD `36d19a0875a44a78121bdad469817f4e1f9d725e`, with a clean working tree before editing. The documentation changes are local and uncommitted. Authorized files are docs/prd.md, docs/journey-and-rules.md, measurement/README.md, docs/experiment.md, docs/backlog.md, docs/weekly-decision-memo.md, intent.md, README.md, directive.md and this verification record. No files were added, removed or renamed.
+
+SHA-256 values were captured for all 63 tracked files before editing. The 53 files outside the authorized list were compared afterward, including source, tests, generator, datasets, saved calculations/logs, screenshots, assets and icon attribution. The original 15,888 bytes of this verification record were separately preserved and checked as an unchanged prefix. No private internal records were read or imported for this revision.
+
+### Checks actually executed
+
+| Check / command | Actual result and scope |
+|---|---|
+| `git branch --show-current`, `git rev-parse HEAD`, `git status --short`, baseline diff inspection | Expected branch/commit and clean starting state; subsequent changes restricted to authorized Markdown. |
+| `node --test tests/artifacts.test.mjs` | **4 passed, 0 failed, 0 skipped.** Five task-row format, local artifact links, static source safeguards and private-link patterns. This is not a behavioral app-suite rerun. |
+| `node measurement/verify.mjs` | Passed; original source-derived 20%/35%/27.5%, +15pp/+75% viewer illustration, invitation-stage 16%/28%/22%, and zero actual transactions. Existing output files were not overwritten. |
+| Inline PowerShell Markdown checks using `git ls-files '*.md'`, `Get-Content` and regex heading/link resolution | **11 Markdown files, 128 local references, 18 heading anchors; no missing targets/anchors.** |
+| Inline PowerShell structure/source checks | Exactly **five prioritized task rows and five task detail sections**, **12 PRD requirement-to-task mappings**, **18 existing emitted event types documented**, and all **four original score rows unchanged**. |
+| Inline PowerShell data checks using `ConvertFrom-Json`, `Import-Csv`, distinct membership sets and saved-calculation comparison | Control/variant/pooled counts and rates matched source and saved calculations. All **five individual JSON exports** and **five CSV exports**, including **8,927 CSV fields**, matched the bundle. Synthetic labeling, identifier uniqueness, attempt ownership and memo clarification examples passed. No regeneration. |
+| Inline PowerShell `Get-FileHash -Algorithm SHA256`, original-prefix byte comparison and Git boundary checks | **53 protected files unchanged**; original verification prefix unchanged; no unauthorized, staged or untracked changes. |
+| `git diff --check` | Passed with no whitespace errors. Git printed configured LF-to-CRLF conversion notices for revised working files; these are not whitespace failures. |
+| Manual document/Quest consistency review, supported by `rg -n` scans | Checked Asset Market Cap/Suncrest roles, permissions, requirement/task/evidence links, two metric denominators, provisional assumptions, pending sponsorship/pilot controls, authorship, chronology and submission boundaries. |
+
+Independent primary totals remained 50 invitations, 40 eligible viewers, 20 submitters, 21 accepted nonduplicate questions, 12 qualified questions and 11 qualified people. Raw exports remained 52 people, 53 registrations, 23 questions, 250 events and three acknowledgement attempts. Attempts remained two successes, one failure, one sponsored success and zero actual blockchain transactions. The memo's C-Q05 and V-Q08 clarification examples matched their stored text/status.
+
+### Coverage, limits and remaining review
+
+The revised intent retains four bottlenecks and original ranking/scores. PRD and journey/rules separate intended product policy from demonstrated mechanics and unimplemented pilot controls. Backlog contains exactly five product tasks, with evaluator packaging retained in directive. Measurement defines the prospective event/reporting contract while preserving the simplified seeds and existing calculation behavior. Experiment uses assigned eligible invitees for its prospective primary metric; historical synthetic viewer comparisons remain noncausal. The memo has role-owned next outputs and a pre-validation decision checkpoint. Directive retains final instructions, evaluator results, all supporting links and exactly three required submission items.
+
+The +5pp target, 14-day observation plus 7-day maturation and proposed response times are planning assumptions, not real performance or permission to run a pilot. Persistent sponsorship policy/budget/assurance/retries and other identity, authority, access/retention, sample/uncertainty and reporting-governance decisions remain pending. Candidate historical approvals/walkthrough/contribution assertions require personal confirmation; Loom, actual human effort, intended-reviewer access, final personal acceptance and submission authorization remain outstanding.
+
+The full application/domain/UI regression suite, JavaScript syntax suite, HTTP/server checks, native browser walkthrough, screen reader, printing and external-link access were **not rerun in this documentation revision**. The historical 42/109/124-test checkpoints, original logs/images and limitations above retain their original dates and scope. No fixture generator, production integration, email, KYC, payment or real blockchain action was run. No commit, push, merge, branch creation, permission change, external contact, GitHub Project update or Quest submission occurred. Final post-append artifact/link, whitespace, protected-file and repository-state checks confirm the local change boundary; they do not grant final Product Owner acceptance.
