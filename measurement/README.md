@@ -2,7 +2,7 @@
 
 This document owns entities, event definitions, counting and reporting semantics for [REQ-09/REQ-10](../docs/prd.md#functional-requirements-and-acceptance). [Journey/rules](../docs/journey-and-rules.md) owns eligibility and qualification policy; the [PRD](../docs/prd.md#outcomes-and-provisional-planning-assumptions) owns the provisional product target; [experiment](../docs/experiment.md) owns campaign design and decision rules.
 
-The intended contract below is distinct from the unchanged local implementation. No real conversion baseline, campaign or production event pipeline exists. Suncrest Protocol is the fictional disclosure on Asset Market Cap.
+The intended contract below is distinct from the existing local implementation. No real conversion baseline, campaign or production event pipeline exists. Suncrest Protocol is the fictional disclosure on Asset Market Cap.
 
 ## Business entities and identity keys
 
@@ -44,7 +44,7 @@ Zero denominators yield `null` in calculation JSON and **N/A** in presentation. 
 
 ## Prospective windows, cutoff and corrected reports
 
-**P2 planning assumption:** propose 14 days of participation observation followed by 7 days of review maturation, subject to pilot approval, capacity and data sufficiency. No live dates are scheduled. The following reporting design is prospective; detailed eligibility timing/correction governance must be finalized before a pilot.
+**Provisional planning assumption:** propose 14 days of participation observation followed by 7 days of review maturation, subject to pilot approval, capacity and data sufficiency. No live dates are scheduled. The following reporting design is prospective; detailed eligibility timing/correction governance must be finalized before a pilot.
 
 1. Declare UTC instants `window_start`, `window_end` and `review_cutoff`, using `[window_start, window_end)` for new contributions. Maturation ends 7 days after the proposed 14-day observation window. Business-day response expectations are separate from these elapsed-day windows.
 2. Record eligibility effective time and event occurrence/receipt times. Proposed policy evaluates eligibility at view/submission time; prospective revocation blocks new work without silently rewriting previously valid membership. Fraud correction requires a documented adjudication/restatement. Email assignment membership stays frozen; do not drop people based on downstream outcomes.
@@ -53,7 +53,7 @@ Zero denominators yield `null` in calculation JSON and **N/A** in presentation. 
 5. Record later reviews, appeals, delayed events and identity corrections with occurrence and receipt times. Publish an explicitly versioned restatement identifying affected counts and reasons, or include the change in the next report under a predeclared rule. Late-arrival handling, access/retention and approval authority remain pilot decisions.
 6. Compare cohorts with matching definitions, exposure and maturation. Establish an observed baseline separately; never substitute the chosen synthetic 20% control. Product's proposed +5pp target is owned by the PRD and is not a statistical guarantee.
 
-The existing module filters view/submission/registration/attempt timestamps against the fixture's inclusive ISO start/end, but invitation membership is current participant state and qualification is current question state. It does not reconstruct historical eligibility, replay decisions at cutoff, deduplicate every delivered event/attempt row, or freeze or restate reports. These requirements are not retrofitted into historical fixtures by this revision.
+The existing module filters view/submission/registration/attempt timestamps against the fixture's inclusive ISO start/end, but invitation membership is current participant state and qualification is current question state. It does not reconstruct historical eligibility, replay decisions at cutoff, deduplicate every delivered event/attempt row, or freeze or restate reports.
 
 ## Event envelope and idempotency
 
@@ -77,7 +77,7 @@ Existing events provide `event_id`, `occurred_at`, participant/session/cohort, `
 
 ## Complete existing event dictionary
 
-“Both” means seeded snapshot and live sandbox, not production. Optional/absent fields reflect actual source differences; do not claim a richer payload already exists.
+“Both” means seeded snapshot and live sandbox, not production. Optional or absent fields reflect differences between those sources.
 
 | Event | Trigger | Existing payload beyond common envelope | Source |
 |---|---|---|---|
@@ -102,13 +102,13 @@ Existing events provide `event_id`, `occurred_at`, participant/session/cohort, `
 
 Existing `question_*` names are retained as implementation keys for the product's inquiry concept. `at` on an acknowledgement is the attempt timestamp; `occurred_at` is its enclosing event time. Registration/invitation records are not public CTA clicks or real email delivery receipts. Sign-out/draft actions are not inferred as additional emitted event types.
 
-Proposed future-pilot events, **not implemented**, must cover: `waitlist_joined` (membership key/time); `eligibility_changed` (effective status, actor/reason); `experiment_assigned` (experiment/person/arm/allocation record); `invitation_delivery_result` (assignment/invitation, attempt/status/time); `appeal_opened` / `appeal_resolved` (appeal, disputed decision, actor/outcome); sponsorship reservation/spend changes (ledger/period/amount/unit/status); and actual transaction status (network/transaction/attempt, finality and actual fee). Their exact naming/versioned payloads must be agreed before instrumentation. No source changes are made here.
+Proposed future-pilot events, **not implemented**, must cover: `waitlist_joined` (membership key/time); `eligibility_changed` (effective status, actor/reason); `experiment_assigned` (experiment/person/arm/allocation record); `invitation_delivery_result` (assignment/invitation, attempt/status/time); `appeal_opened` / `appeal_resolved` (appeal, disputed decision, actor/outcome); sponsorship reservation/spend changes (ledger/period/amount/unit/status); and actual transaction status (network/transaction/attempt, finality and actual fee). Their exact naming/versioned payloads must be agreed before instrumentation.
 
 ## Intended review evidence and current seed limitation
 
 The intended record requires decision ID, inquiry/current version, disclosure/section reference, reviewer identity and authority grant/policy version, decision, all qualifying criteria, appropriate reason, specific note/evidence references, review timestamp, and prior/superseding decision links. Clarification, appeal and re-review preserve prior text and decisions. Authority checks and historical evidence are requirements, not consequences of a checkbox alone.
 
-The live model records a synthetic reviewer ID, criteria, reason/note, version and review history. Seeded snapshot records instead provide simplified status/reason/note/reviewer/section/time; they omit live checklist confirmations and full review/version history, and even pending seeds have a placeholder review-reason record. Imported QA qualifications are deliberately adversarial exclusions. Seed status demonstrates calculation behavior, not a complete adjudication audit or real review quality. Preserve seeds, generator and calculations unchanged.
+The live model records a synthetic reviewer ID, criteria, reason/note, version and review history. Seeded snapshot records instead provide simplified status/reason/note/reviewer/section/time; they omit live checklist confirmations and full review/version history, and even pending seeds have a placeholder review-reason record. Imported QA qualifications are deliberately adversarial exclusions. Seed status demonstrates calculation behavior, not a complete adjudication audit or real review quality.
 
 ## Existing synthetic membership and equations
 
@@ -161,4 +161,4 @@ node measurement/verify.mjs
 node --test tests/domain.test.mjs tests/metrics.test.mjs
 ```
 
-The separate command `node measurement/generate-fixtures.mjs` **writes** the eleven generated JSON/CSV outputs. It is documented for authorized regeneration only; do not run it for this documentation revision. Historical deterministic-generation and behavioral results remain in [verification](../evidence/verification.md), with actual [calculation output](../evidence/calculations.json). The richer intended contract does not imply that these unchanged modules implement it.
+The separate command `node measurement/generate-fixtures.mjs` **writes** the eleven generated JSON/CSV outputs; the read-only checks above use the existing exports. Historical deterministic-generation and behavioral results are in [verification](../evidence/verification.md), with actual [calculation output](../evidence/calculations.json). The existing modules implement the synthetic calculation rules described above; the full intended event and reporting contract remains unimplemented.

@@ -1,6 +1,6 @@
 # Asset Market Cap — participation journey and operating rules
 
-This document owns participation policy for the [MVP requirements](prd.md). Suncrest Protocol is the fictional disclosure example. Approved direction is distinguished from provisional response expectations, proposed pilot controls and the existing synthetic implementation. No real pilot is authorized.
+This document defines participation policy for the [MVP requirements](prd.md). Suncrest Protocol is the fictional disclosure example on Asset Market Cap. Response expectations and pilot controls remain proposals where noted; current prototype capabilities are described separately.
 
 ## Permissions and intended journey
 
@@ -65,7 +65,7 @@ Future-pilot controls should layer account/invitation assurance, calibrated rate
 | Engineering | Diagnose saved-work, identity, event and recovery failures; provide reproducible corrective evidence. |
 | Accountable pilot owner | Record scope/reason of hold; coordinate corrective action; authorize resumption after evidence and operational review. A named owner is required before launch. |
 
-Proposed P3 expectations: initial review within **2 business days of submission**; follow-up assignment within **1 business day after qualification**; response or progress update within **5 business days after qualification**. These are planning proposals, not achieved SLAs or staffing commitments. Business calendar/timezone, workload coverage, appeal turnaround and escalation contacts remain unresolved. Operations escalates threatened/missed expectations to the pilot owner rather than marking a response delivered. Product receives recurrent policy/quality issues; engineering receives data/recovery defects.
+Proposed response expectations: initial review within **2 business days of submission**; follow-up assignment within **1 business day after qualification**; response or progress update within **5 business days after qualification**. These are planning proposals, not achieved SLAs or staffing commitments. Business calendar/timezone, workload coverage, appeal turnaround and escalation contacts remain unresolved. Operations escalates threatened/missed expectations to the pilot owner rather than marking a response delivered. Product receives recurrent policy/quality issues; engineering receives data/recovery defects.
 
 Follow-up states are `unassigned`, `triaged`, `response_pending`, `addressed`. A pilot must require an accountable owner and next action before work is considered triaged; an addressed status needs a response/evidence reference. The local status editor simulates these operating actions and does not deliver a response or enforce a production SLA.
 
@@ -82,7 +82,7 @@ The pilot owner records corrective evidence, impact/remediation, consulted roles
 
 Acknowledgement is secondary to the saved inquiry and independent of review. Refusal, close or Escape continues off-chain. Connection failure supports recovery; failed acknowledgement retains the inquiry and separate attempts. An explicit final off-chain choice after failure ends retry for that version. A receipt must match a successful current-version acknowledgement and must not assert qualification, ownership, verified reserves or guaranteed returns.
 
-**Pending production proposal (P4):** up to **two sponsored successes per canonical participant per 30 days**, at most **one per inquiry across revisions**. This requires further approval. The period's exact boundary, persistent identity assurance, KYC justification, verification method, network/finality rules, retry allowance, per-transaction cap, total budget and funding are not established. KYC may apply to a justified sponsored-fee path; it is not automatically mandatory for all acknowledgement paths. An eligible off-chain participant can always decline.
+**Pending production sponsorship proposal:** up to **two sponsored successes per canonical participant per 30 days**, at most **one per inquiry across revisions**. The policy has not been finalized. The period's exact boundary, persistent identity assurance, KYC justification, verification method, network/finality rules, retry allowance, per-transaction cap, total budget and funding are not established. KYC may apply to a justified sponsored-fee path; it is not automatically mandatory for all acknowledgement paths. An eligible off-chain participant can always decline.
 
 Before any real sponsored path, distinguish and persist:
 

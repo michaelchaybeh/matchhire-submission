@@ -1,6 +1,6 @@
 # Asset Market Cap — proposed waitlist email experiment
 
-One unsent A/B email design with illustrative synthetic records. No campaign, recruitment or real delivery has occurred or is authorized. Suncrest Protocol is the fictional project disclosure hosted on Asset Market Cap. Existing fixtures remain unchanged; the prospective design below does not retroactively make them randomized.
+This proposed A/B email experiment uses the fictional Suncrest Protocol disclosure on Asset Market Cap. The emails are unsent: no campaign, recruitment or real delivery has occurred. The synthetic illustration below demonstrates the metrics; it is separate from the proposed randomized experiment.
 
 ## Hypothesis and treatment
 
@@ -8,12 +8,12 @@ Explaining that useful inquiries receive visible reasoned review and a next acti
 
 Both arms must receive the same disclosure/version, section references, eligibility, review criteria, response experience and optional-wallet/sponsorship policy. Only email subject/body framing differs. Neither arm promises positive qualification, financial rewards or investment returns. The subject/body pair is one bundled treatment; its individual wording components cannot be separately attributed.
 
-| Arm | Subject | Preserved unsent example body |
+| Arm | Subject | Unsent example body |
 |---|---|---|
 | Control | Suncrest: review the project disclosure | You are invited to review the fictional Suncrest Protocol disclosure. Explore the proposed pilot, assumptions, risks and information gaps. Ask a question about anything needing clarification. Review Project Disclosure. Wallet and KYC are optional. |
 | Variant | Ask a useful question — see its review status | You are invited to review the fictional Suncrest Protocol disclosure. Ask a specific question about a claim, risk or missing evidence and see its review status and next action. Review Project Disclosure. Wallet and KYC are optional. |
 
-These examples communicate wallet/KYC-free inquiry. Any separately approved sponsorship assurance policy must not contradict that promise. No real CTA destination, recipient list, consent record or delivery receipt is fabricated. Production sender identity and lawful/permissioned contact rules require separate decisions before sending.
+These examples communicate wallet/KYC-free inquiry. Any separately approved sponsorship assurance policy must not contradict that promise. The CTA destination, recipient list, consent records, sender identity and lawful/permissioned contact rules must be established before sending.
 
 ## Prospective population and assignment
 
@@ -35,9 +35,9 @@ Definitions and correction rules are owned by the [measurement contract](../meas
 
 Email framing can change who visits. A viewer-only denominator conditions on behavior after treatment and cannot assess the complete experiment. A disclosure view is not proof of reading/comprehension, and a wallet event is not useful conversion.
 
-**P2 provisional assumption:** 14 days for participation, then 7 days for review maturation, subject to pilot approval, capacity and data sufficiency. For a single planned invitation batch, declare UTC start/end/cutoff before sending; for staggered batches, finalize equal per-person exposure/maturation and aggregate cutoff before launch. No dates or outreach are scheduled. Attribute original in-window inquiries; permit their clarification to mature until cutoff; use current version/decision then. Show pending workload rather than treating it as qualified. Freeze the report; late reviews/appeals/events follow versioned correction rules.
+**Provisional observation period:** 14 days for participation, then 7 days for review maturation, subject to pilot approval, capacity and data sufficiency. For a single planned invitation batch, declare UTC start/end/cutoff before sending; for staggered batches, finalize equal per-person exposure/maturation and aggregate cutoff before launch. No dates or outreach are scheduled. Attribute original in-window inquiries; permit their clarification to mature until cutoff; use current version/decision then. Show pending workload rather than treating it as qualified. Freeze the report; late reviews/appeals/events follow versioned correction rules.
 
-No observed baseline exists. Establish it separately under the same scope/review/measurement rules. The [PRD's P1](prd.md#outcomes-and-provisional-planning-assumptions) proposes +5pp in **product qualified-viewer conversion** over an observed baseline. That target is not an approved email effect threshold and is not derived from synthetic 35%. Before campaign approval, specify a minimum worthwhile assigned-invitee effect, sample/uncertainty plan and sufficient review capacity. No significance, power or sample adequacy is claimed here.
+No observed baseline exists. Establish it separately under the same scope/review/measurement rules. The [PRD](prd.md#outcomes-and-provisional-planning-assumptions) proposes +5pp in **product qualified-viewer conversion** over an observed baseline. That target is not an approved email effect threshold and is not derived from synthetic 35%. Before campaign approval, specify a minimum worthwhile assigned-invitee effect, sample/uncertainty plan and sufficient review capacity. No significance, power or sample adequacy is claimed here.
 
 ## Guardrails, decisions and responsibilities
 
@@ -53,7 +53,7 @@ The [universal hold policy](journey-and-rules.md#operations-handoffs-and-holds) 
 
 At the declared mature-data checkpoint, compare the primary assigned-invitee metric, uncertainty, quality, delivery, unresolved reviews and operational cost. Continue/modify/stop according to predeclared criteria. If criteria/sample sufficiency remain unset or guardrails unresolved, the decision is **inconclusive/hold**, not “variant wins.” Do not repeatedly extend observation until a preferred result appears. Safety monitoring can occur during the experiment without using interim conversion to declare a winner. No campaign-specific effect threshold or automatic stop service is approved or implemented.
 
-## Preserved synthetic illustration
+## Synthetic illustration
 
 The chosen fixtures have 25 delivered synthetic invitations and 20 eligible viewers per arm. Canonical assignment is stable; outcomes are generated, not randomized observations.
 
@@ -63,6 +63,6 @@ The chosen fixtures have 25 delivered synthetic invitations and 20 eligible view
 
 No causal conclusion, forecast, winner, observed baseline or significance follows. See [raw records and equations](../measurement/README.md#reconciled-fixture-totals).
 
-## Next validation and approval gate
+## Next validation and launch prerequisites
 
-First prepare moderated synthetic-task usability validation of references, review understanding and refusal/recovery. Product must approve recruitment/testing before any session. Engineering prepares record/recovery checks; operations prepares critical/supportive calibration examples and follow-up/appeal ownership; Product reviews prompt comprehension and adverse incentives. The pilot owner then evaluates readiness, identity/access controls, sample/timing, capacity and pending sponsorship policy before considering a real campaign. No contact, KYC, payment or transaction is performed by this design.
+First prepare moderated synthetic-task usability validation of references, review understanding and refusal/recovery. Recruitment and testing require Product approval before any session. Engineering prepares record/recovery checks; operations prepares critical/supportive calibration examples and follow-up/appeal ownership; Product reviews prompt comprehension and adverse incentives. The pilot owner then evaluates readiness, identity/access controls, sample/timing, capacity and pending sponsorship policy before considering a real campaign.

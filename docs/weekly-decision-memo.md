@@ -1,10 +1,10 @@
 # Weekly operating decision memo — synthetic week 1
 
-Asset Market Cap's participation capability; Suncrest Protocol is the fictional disclosure example. Fixture window: **19–25 October 2026**. This memo is revised after the prototype using the same synthetic records; it is not a report of an elapsed real operating week. No campaign, interview, user validation or real transaction occurred.
+This memo evaluates a synthetic operating scenario for Asset Market Cap's participation capability, using Suncrest Protocol as the fictional disclosure example. The fixture window is **19–25 October 2026**, rather than an elapsed real operating week. No campaign, interview, user validation or real transaction occurred.
 
 ## Decision
 
-**CHANGE the validation plan; do not declare an experiment winner.** I would retain wallet-free contribution and visible reasoned review, prepare clearer section-specific clarification guidance, and request approval for moderated usability validation before considering a real campaign. This is a simulation-based operating recommendation, not authorization to recruit, send, deploy or spend.
+**CHANGE the validation plan; do not declare an experiment winner.** I would retain wallet-free contribution and visible reasoned review, prepare clearer section-specific clarification guidance, and request approval for moderated usability validation before considering a real campaign. A real campaign depends on validation and operational readiness.
 
 ## What the records show
 
@@ -35,9 +35,9 @@ These are proposed next actions, not completed work or assignments to named peop
 
 | Role | Next output and completion condition | Dependency / escalation |
 |---|---|---|
-| Engineering | Produce a readiness comparison between intended event/recovery contracts and existing behavior; reconciliation and refusal/duplicate/failure evidence remain inspectable; identify unimplemented controls explicitly. | Uses measurement contract; report identity, saved-work or denominator defects to pilot owner. No source change is authorized by this memo. |
-| Operations | Prepare critical/supportive/clarification calibration examples, a follow-up owner/action handoff and an appeal-routing plan; flag proposed response capacity and unresolved calendar/authority. | Product resolves criteria ambiguity; pilot owner resolves capacity and coverage. These preparation outputs are not claimed completed. |
-| Product | Review section-specific guidance against examples; retain unchanged selection scores while confirming rationale; approve or revise the moderated test plan and pending policy details. | Requires readiness/calibration inputs; no recruitment before approval. |
+| Engineering | Produce a readiness comparison between intended event/recovery contracts and existing behavior; reconciliation and refusal/duplicate/failure evidence remain inspectable; identify unimplemented controls explicitly. | Uses measurement contract; report identity, saved-work or denominator defects to pilot owner. |
+| Operations | Prepare critical/supportive/clarification calibration examples, a follow-up owner/action handoff and an appeal-routing plan; flag proposed response capacity and unresolved calendar/authority. | Product resolves criteria ambiguity; pilot owner resolves capacity and coverage. |
+| Product | Review section-specific guidance against examples; approve or revise the moderated test plan and pending policy details. | Requires readiness/calibration inputs; no recruitment before approval. |
 | Pilot owner | At the readiness checkpoint record continue-to-validation, change, or hold, with reasons and accountable actions. Consider identity/access, reviewer authority, event/cutoff controls, sample/timing and optional sponsorship separately. | No real pilot until its scope, capacity, remaining controls and authorization are explicit. |
 
 ## Next decision checkpoint and hold conditions
@@ -49,4 +49,4 @@ These are proposed next actions, not completed work or assignments to named peop
 - Before a future email experiment, finalize assignment/sample criteria, eligibility and appeals, 14-day/7-day timing feasibility and reporting freeze; evaluate only at its predeclared mature-data checkpoint.
 - Resume only after the pilot owner records corrective evidence and operational review under [hold rules](journey-and-rules.md#operations-handoffs-and-holds).
 
-There is no evidence here supporting campaign scale or a real-world uplift announcement. Historical behavioral checks and their limits remain in [verification](../evidence/verification.md); this revision does not claim they were newly executed.
+There is no evidence here supporting campaign scale or a real-world uplift announcement. Historical behavioral checks, their execution dates and limits are recorded in [verification](../evidence/verification.md).

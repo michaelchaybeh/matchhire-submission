@@ -1,18 +1,18 @@
 # Asset Market Cap — disclosure participation MVP
 
-Asset Market Cap is the asset-information platform; Suncrest Protocol is the fictional project disclosure used to demonstrate its reusable disclosure-participation and qualified-inquiry capability. The selected bottleneck is disclosure engagement → qualified questions. All people, email outcomes, reviews and wallet actions in this local prototype are synthetic. No deployment or Quest submission is claimed.
+Asset Market Cap is the asset-information platform; Suncrest Protocol is the fictional project disclosure used to demonstrate its reusable disclosure-participation and qualified-inquiry capability. The selected bottleneck is disclosure engagement → qualified questions. All people, email outcomes, reviews and wallet actions in this local prototype are synthetic; there has been no live campaign or real-user validation.
 
 ## Product specification and demonstration boundary
 
-The [PRD](docs/prd.md) defines intended behavior; [journey/rules](docs/journey-and-rules.md) owns permissions and operating policy; [measurement](measurement/README.md) owns formulas/events. These documents were revised after implementation. [Exactly five product tasks](docs/backlog.md) retrospectively map requirements to evidence and unimplemented pilot dependencies.
+The [PRD](docs/prd.md) defines intended behavior; [journey/rules](docs/journey-and-rules.md) owns permissions and operating policy; [measurement](measurement/README.md) owns formulas/events. The product documents were refined after the prototype was built. The [five-task backlog](docs/backlog.md) maps requirements to prototype evidence and remaining pilot dependencies.
 
 The intended product permits anonymous public disclosure reading and approval-controlled submission. The existing prototype selects predefined people: waiting Sam can read, invited John/Maya/Avery can submit. **Anonymous public browsing is not implemented.** Neither wallet nor KYC is required to submit or qualify. Review/follow-up/acknowledgement mechanics are demonstrated with synthetic substitutes; real authority, appeals, durable identity and production services are unimplemented.
 
-The PRD's +5pp target over a separately observed baseline, 14-day observation plus 7-day maturation and response expectations are provisional planning assumptions. No live pilot is scheduled or authorized. Persistent sponsorship policy, budgets and other pilot controls remain pending.
+The PRD's +5pp target over a separately observed baseline, 14-day observation plus 7-day maturation and response expectations are provisional planning assumptions. A pilot requires decisions on persistent sponsorship policy, budgets and other operating controls; no live dates are scheduled.
 
 ## Prototype build identity
 
-Prototype/source and historical correction evidence baseline: `36d19a0875a44a78121bdad469817f4e1f9d725e` on `review/product-experience-20261020`, [immutable commit reference](https://github.com/michaelchaybeh/matchhire-submission/commit/36d19a0875a44a78121bdad469817f4e1f9d725e). This is a private reference; intended-reviewer access has not been verified. Documentation revisions after that baseline are separate from application changes and do not imply a newly committed/pushed release. The [verification checkpoint](evidence/verification.md) records actual revision checks.
+Application and historical correction evidence baseline: `36d19a0875a44a78121bdad469817f4e1f9d725e` on `review/product-experience-20261020`, [immutable commit reference](https://github.com/michaelchaybeh/matchhire-submission/commit/36d19a0875a44a78121bdad469817f4e1f9d725e). This is a private reference; intended-reviewer access has not been verified. The dated [verification record](evidence/verification.md) identifies the checks performed at each checkpoint.
 
 ## Launch on Windows
 
@@ -23,7 +23,7 @@ Set-Location C:\Repos\MatchHire\submission
 python server.py
 ```
 
-Open http://127.0.0.1:8770/prototype/ in a **new browser tab** to begin a fresh walkthrough. Each tab owns its in-memory state; keep any existing Product Owner tab open and do not reload it or use Reset Live Sandbox. If the server is already running, reuse it. To restart later, stop the server with Ctrl+C and run the same command; existing tabs keep their state until they reload. The runner serves only this assessment repository, rejects hidden paths such as `.git`, disables directory listings and binds to loopback. Do not open the app as a `file://` page; its local module/data requests need HTTP.
+Open http://127.0.0.1:8770/prototype/ in a **new browser tab** to begin a fresh walkthrough. Each tab owns its in-memory state. Reloading or using Reset Live Sandbox clears that tab’s live walkthrough. If the server is already running, reuse it. To restart later, stop the server with Ctrl+C and run the same command; existing tabs keep their state until they reload. The runner serves only this assessment repository, rejects hidden paths such as `.git`, disables directory listings and binds to loopback. Do not open the app as a `file://` page; its local module/data requests need HTTP.
 
 ## Reproduce the three required edge cases
 
@@ -48,7 +48,7 @@ node measurement/verify.mjs
 node --test tests/artifacts.test.mjs
 ```
 
-For an authorized full behavioral reproduction, the original suite and syntax/HTTP commands remain below. Listing them does not claim they were rerun during the documentation revision. Use the dated verification record for actual scope/results.
+Full behavioral, syntax and HTTP checks are listed below. The dated verification record reports which checks were executed and their results.
 
 ```powershell
 node measurement/verify.mjs
@@ -75,19 +75,19 @@ python server.py --check
 git -C C:\Repos\MatchHire\submission diff --check
 ```
 
-Fixture regeneration is separate: `node measurement/generate-fixtures.mjs` writes eleven JSON/CSV outputs and requires specific authorization; do not run it for this documentation revision. Generated files are deterministic. The experiment bundle has 50 primary people plus two excluded QA fixtures; charts and equations derive from records. Immutable experiment metrics and live sandbox metrics are displayed separately. Reset/reload erases live state, including identity, drafts, questions, reviews, wallet and sponsorship; it reloads the same snapshot.
+Fixture regeneration is a separate, write-producing operation: `node measurement/generate-fixtures.mjs` deterministically writes eleven JSON/CSV outputs. It is not needed for read-only calculation or artifact checks. The experiment bundle has 50 primary people plus two excluded QA fixtures; charts and equations derive from records. Immutable experiment metrics and live sandbox metrics are displayed separately. Reset/reload erases live state, including identity, drafts, questions, reviews, wallet and sponsorship; it reloads the same snapshot.
 
-Shipped totals remain 50 invitations, 40 eligible viewers, 20 submitters, 21 accepted nonduplicate questions, 12 qualified questions and 11 qualified people. Viewer conversion is 20%/35%/27.5%; invitation-stage illustration is 16%/28%/22%. Three demo attempts include two successes and one failure; actual transactions are zero. These chosen records are neither an observed baseline nor a randomized campaign. The prospective email decision denominator is eligible randomly assigned invitees; the current dashboard retains its synthetic labels and viewer-based comparison.
+The synthetic snapshot contains 50 invitations, 40 eligible viewers, 20 submitters, 21 accepted nonduplicate questions, 12 qualified questions and 11 qualified people. Viewer conversion is 20%/35%/27.5%; invitation-stage illustration is 16%/28%/22%. Three demo attempts include two successes and one failure; actual transactions are zero. These chosen records are neither an observed baseline nor a randomized campaign. The prospective email decision denominator is eligible randomly assigned invitees; the current dashboard retains its synthetic labels and viewer-based comparison.
 
 ## Evaluator artifacts
 
-- [intent.md](intent.md) records selection and unchanged scores; [directive.md](directive.md) preserves final working instructions and the mandatory evaluator results/handoff appendix. Exactly three required submission items remain Loom ≤5 minutes, intent.md and final directive.md. Supporting files are linked evidence; Loom, intended-reviewer access, actual human effort and final submission approval remain outstanding.
+- The three required submission items are **Loom ≤5 minutes**, [intent.md](intent.md) and [final directive.md](directive.md). Intent explains product selection and prioritization; the directive contains the final instructions, evaluator results and handoff. Supporting files provide evidence. Outstanding submission checks are listed in the directive.
 - [Journey/rules](docs/journey-and-rules.md), [PRD](docs/prd.md), [five-task backlog](docs/backlog.md)
 - [Dataset/equations](measurement/README.md), [email experiment](docs/experiment.md), [weekly decision memo](docs/weekly-decision-memo.md)
 - [Verification evidence](evidence/verification.md)
 
 ## Boundaries and provenance
 
-Recorded provenance credits a pre-existing exploratory wireframe with visual language, bounded previews, escaping and optional-wallet recovery patterns, and credits the MVP work with canonical identity, qualification/revision/follow-up logic, data, measurement and tests. Codex contributed implementation, research/drafting and historical verification/corrections. The candidate's exact historical approvals, walkthroughs and contribution split require personal confirmation in intent/directive. No private coordination records are incorporated by this revision.
+Recorded provenance credits a pre-existing exploratory wireframe with visual language, bounded previews, escaping and optional-wallet recovery patterns, and credits the MVP work with canonical identity, qualification/revision/follow-up logic, data, measurement and tests. Codex contributed implementation, research/drafting and historical verification/corrections. Contribution details and historical assertions requiring personal confirmation are identified in the [handoff](directive.md).
 
-There is no real authentication, KYC, global uniqueness/bot detection, blockchain, gas processing, production analytics, durable database or email delivery. The live sponsorship cap is two successful acknowledgements per canonical person/session, one per inquiry; it resets with the sandbox and is not a persistent budget policy. Failed real transactions may cost gas, while this demonstration processes none. Seed reviews are simplified relative to the live checklist/history workflow. Synthetic reviewer judgment and follow-up status are not proof of real value or delivered responses. Native certificate printing and comprehensive cross-browser/accessibility testing require separate manual confirmation. No commit, push, merge, deployment, contact, access grant or Quest submission is authorized by the documentation revision.
+There is no real authentication, KYC, global uniqueness/bot detection, blockchain, gas processing, production analytics, durable database or email delivery. The live sponsorship cap is two successful acknowledgements per canonical person/session, one per inquiry; it resets with the sandbox and is not a persistent budget policy. Failed real transactions may cost gas, while this demonstration processes none. Seed reviews are simplified relative to the live checklist/history workflow. Synthetic reviewer judgment and follow-up status are not proof of real value or delivered responses. Native certificate printing and comprehensive cross-browser/accessibility testing require separate manual confirmation.
