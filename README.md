@@ -14,16 +14,17 @@ The PRD's +5pp target over a separately observed baseline, 14-day observation pl
 
 Application and historical correction evidence baseline: `36d19a0875a44a78121bdad469817f4e1f9d725e` on `review/product-experience-20261020`, [immutable commit reference](https://github.com/michaelchaybeh/matchhire-submission/commit/36d19a0875a44a78121bdad469817f4e1f9d725e). This is a private reference; intended-reviewer access has not been verified. The dated [verification record](evidence/verification.md) identifies the checks performed at each checkpoint.
 
-## Launch on Windows
+## Launch locally
 
-No dependencies or build step. Python standard library runs the local server; Node.js runs tests and formulas.
+Clone this private repository into any directory, then open a terminal in the clone's repository root: the folder containing this README and `server.py`. All commands below use paths relative to that root; the clone's directory name and parent location do not matter. Reviewers need repository access to clone or open private GitHub links; submitting a link does not itself grant that access.
+
+Python 3 runs the standard-library local server; Node.js runs tests and formulas, and Git runs repository checks. No third-party dependencies or build step are required. On systems where Python 3 is named `python3`, substitute `python3` for `python` in the launch and server-check commands below.
 
 ```powershell
-Set-Location C:\Repos\MatchHire\submission
 python server.py
 ```
 
-Open http://127.0.0.1:8770/prototype/ in a **new browser tab** to begin a fresh walkthrough. Each tab owns its in-memory state. Reloading or using Reset Live Sandbox clears that tab’s live walkthrough. If the server is already running, reuse it. To restart later, stop the server with Ctrl+C and run the same command; existing tabs keep their state until they reload. The runner serves only this assessment repository, rejects hidden paths such as `.git`, disables directory listings and binds to loopback. Do not open the app as a `file://` page; its local module/data requests need HTTP.
+Open http://127.0.0.1:8770/prototype/ on the machine running the server in a **new browser tab** to begin a fresh walkthrough. This localhost address is not a hosted demo, and GitHub's file preview does not run the application. Each tab owns its in-memory state. Reloading or using Reset Live Sandbox clears that tab’s live walkthrough. If the server is already running, reuse it. To restart later, stop the server with Ctrl+C and run the same command; existing tabs keep their state until they reload. The runner serves only this assessment repository, rejects hidden paths such as `.git`, disables directory listings and binds to loopback. Do not open the app as a `file://` page; its local module/data requests need HTTP.
 
 ## Reproduce the three required edge cases
 
@@ -72,7 +73,7 @@ node --check tests/evaluator.test.mjs
 node --check tests/handoff.test.mjs
 node --check tests/browser-harness.mjs
 python server.py --check
-git -C C:\Repos\MatchHire\submission diff --check
+git diff --check
 ```
 
 Fixture regeneration is a separate, write-producing operation: `node measurement/generate-fixtures.mjs` deterministically writes eleven JSON/CSV outputs. It is not needed for read-only calculation or artifact checks. The experiment bundle has 50 primary people plus two excluded QA fixtures; charts and equations derive from records. Immutable experiment metrics and live sandbox metrics are displayed separately. Reset/reload erases live state, including identity, drafts, questions, reviews, wallet and sponsorship; it reloads the same snapshot.
@@ -81,7 +82,7 @@ The synthetic snapshot contains 50 invitations, 40 eligible viewers, 20 submitte
 
 ## Evaluator artifacts
 
-- The three required submission items are **Loom ≤5 minutes**, [intent.md](intent.md) and [final directive.md](directive.md). Intent explains product selection and prioritization; the directive contains the final instructions, evaluator results and handoff. Supporting files provide evidence. Outstanding submission checks are listed in the directive.
+- The three required submission items are **Loom ≤5 minutes**, [intent.md](intent.md) and [final directive.md](directive.md). The owner confirms that all three required links have been submitted. Intent explains product selection and prioritization; the directive contains the final instructions, evaluator results and handoff. Supporting files provide evidence. The directive distinguishes owner-confirmed submission from unverified video, portal and intended-reviewer-access details.
 - [Journey/rules](docs/journey-and-rules.md), [PRD](docs/prd.md), [five-task backlog](docs/backlog.md)
 - [Dataset/equations](measurement/README.md), [email experiment](docs/experiment.md), [weekly decision memo](docs/weekly-decision-memo.md)
 - [Verification evidence](evidence/verification.md)

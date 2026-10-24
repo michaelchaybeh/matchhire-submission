@@ -143,3 +143,54 @@ The revised intent retains four bottlenecks and original ranking/scores. PRD and
 The +5pp target, 14-day observation plus 7-day maturation and proposed response times are planning assumptions, not real performance or permission to run a pilot. Persistent sponsorship policy/budget/assurance/retries and other identity, authority, access/retention, sample/uncertainty and reporting-governance decisions remain pending. Candidate historical approvals/walkthrough/contribution assertions require personal confirmation; Loom, actual human effort, intended-reviewer access, final personal acceptance and submission authorization remain outstanding.
 
 The full application/domain/UI regression suite, JavaScript syntax suite, HTTP/server checks, native browser walkthrough, screen reader, printing and external-link access were **not rerun in this documentation revision**. The historical 42/109/124-test checkpoints, original logs/images and limitations above retain their original dates and scope. No fixture generator, production integration, email, KYC, payment or real blockchain action was run. No commit, push, merge, branch creation, permission change, external contact, GitHub Project update or Quest submission occurred. Final post-append artifact/link, whitespace, protected-file and repository-state checks confirm the local change boundary; they do not grant final Product Owner acceptance.
+
+
+## 24 October 2026 (KST) — Post-submission final QA
+
+### Submission status and focused corrections
+
+The owner confirmed that the Quest has already been submitted with the three required links: Loom, intent.md and final directive.md. This is owner-confirmed submission status, not independently inspected portal evidence. No Loom URL, video duration, working hours, portal receipt, submission timestamp or reviewer-access confirmation is invented. The submitted Loom and assessment portal were not changed. Earlier dated readiness statements above remain historical.
+
+The clean starting branch was `review/product-experience-20261020`, HEAD `06298d53f570394d96b7ff54539876132aceb0aa`. Corrections are limited to README.md (portable repository-root launch/check commands and private/local access guidance), directive.md (current submission status versus unverified details), and this appended factual checkpoint. The README edge-case reproduction section was compared with the starting commit and remains unchanged.
+
+### GitHub default branch and access
+
+GitHub metadata and authenticated CLI access reported default branch `main`, private visibility and administrative permission. The owner-authorized operation `gh api --method PATCH repos/michaelchaybeh/matchhire-submission -f default_branch=review/product-experience-20261020` succeeded. A subsequent connected GitHub metadata read confirmed default branch `review/product-experience-20261020` and visibility `private`. No collaborator or visibility setting was changed.
+
+The review branch matched the starting local commit before editing; remote main was observed at `7541c68c7e9c846729761acdf4cef6c482f7caf2`. Changing the default branch does not merge or rewrite main. The final correction SHA, push result and post-push branch comparison are supplied in the completion response to avoid a self-referential commit identifier in this record.
+
+### Actual automated verification
+
+| Command / check | Result |
+|---|---|
+| `node --test tests/artifacts.test.mjs tests/domain.test.mjs tests/evaluator.test.mjs tests/handoff.test.mjs tests/metrics.test.mjs tests/participant.test.mjs tests/product.test.mjs tests/ui.test.mjs` | Node v24.14.0: **124 passed, 0 failed, 0 cancelled, 0 skipped** across all eight existing test files. |
+| `node measurement/verify.mjs`, parsed and compared with evidence/calculations.json | Exact match: 50 invitations, 40 eligible viewers, 20 submitters, 21 accepted nonduplicate questions, 12 qualified questions, 11 qualified people; 20%/35%/27.5%, +15pp/+75% viewer illustration, 16%/28%/22% invitation-stage illustration; three demo attempts, two successes, one sponsored success and zero actual transactions. |
+| `git ls-files '*.js' '*.mjs'` followed by `node --check` for each returned path | **18 JavaScript/MJS files passed**. README syntax inventory and its full-test command match the tracked 18 files/eight test files. |
+| `python -c "from pathlib import Path; compile(Path('server.py').read_text(encoding='utf-8'), 'server.py', 'exec'); print('PASS Python in-memory syntax: server.py')"` | Python 3.12.10 syntax passed; no bytecode/cache file was created. |
+| `python server.py --check` | **19 resource checks + 3 blocked-path checks passed**. Initial sandbox execution failed with WinError 10013; the same authorized check passed outside the socket-restricted sandbox. Its ephemeral server shut down normally; no existing walkthrough server was touched. |
+| Inline PowerShell Markdown/heading checks and artifact inventory | **11 tracked Markdown files, 131 relative references, 19 heading anchors** resolved; 18 key local/supporting artifacts present and exactly five prioritized task rows. |
+| Inline PowerShell source/diff review and `rg -n` scans | Portable relative commands, platform/project naming, submission attribution and unchanged technical evidence checked. No additional critical product-policy or reviewer-flow defect was identified. |
+| `Get-FileHash -Algorithm SHA256`, original-prefix hashing and Git boundary checks | **61 tracked files outside the three correction files unchanged**; original **22,172 verification bytes unchanged**. Source, data, tests, security configuration, images and historical logs were preserved. |
+| `git diff --check` | Passed. Git's configured LF-to-CRLF conversion notices are not whitespace failures. |
+
+No fixture generator was run. The current automated results above are a new QA execution; the 19/20/23 October results retain their original dates and scope.
+
+### Gitleaks verification
+
+Installed Gitleaks **8.30.1** was used; no scanner download or configuration change was needed. The executable is installed through WinGet and is not on PATH. In the command descriptions below, `gitleaks` denotes that installed executable.
+
+Completed redacted scans before this checkpoint:
+
+- `gitleaks git . --config .gitleaks.toml --log-opts='--all' --redact=100 --no-banner --no-color --report-format json --report-path <temporary-report-outside-repository>`: **exit 0, zero findings**, 16 local commits scanned.
+- `gitleaks dir . --config .gitleaks.toml --redact=100 --no-banner --no-color --report-format json --report-path <temporary-report-outside-repository>`: **exit 0, zero findings**.
+- All 53 registration alias fields matched the expected fixed synthetic forms. The existing narrow AND allowlist applies only to generic-api-key matches on alias_token lines in two synthetic JSON files; it was not broadened. `.gitleaks.toml` is unchanged.
+
+Reports were kept outside the repository and secret values were redacted. Scans were restricted to this submission repository. Final staged-diff/working-tree scans and a history scan including the correction commit are performed at their respective delivery checkpoints and reported in the completion response; the 16-commit result above is not represented as a scan of a commit that did not yet exist.
+
+### Remaining evidence and reviewer limitations
+
+Local intent/directive and linked supporting artifacts are present. The external Loom link's playback/duration, actual human effort, intended-reviewer permissions and portal confirmation were not independently verified. Reviewers need permission to the private repository and must run the local server on their own machine; localhost is not a hosted public demo. No collaborator, visibility, submitted-video or portal change was made.
+
+Native browser, screen-reader, physical-device/cross-browser and native printing checks were not repeated in this QA. Existing synthetic/DOM tests do not establish production identity, global bot resistance, live operational performance or real-user conversion. Approved product decisions and hypothetical experiment assumptions were not changed.
+
+The final stage/commit/push is limited to verified corrections on the existing review branch. No merge, force-push, rebase, history rewrite, new feature, private internal-repository access or assessment resubmission is part of this task.

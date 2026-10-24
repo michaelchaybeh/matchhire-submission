@@ -81,7 +81,7 @@ Technical revision history includes correct question-specific certificates, fina
 
 No interviews or real-user validation are recorded.
 
-### Limitations and unfinished submission evidence
+### Limitations, submission status and unverified evidence
 
 Anonymous public browsing, real authentication/approval/revocation, reviewer authorization, appeals, durable storage, production bot detection/global uniqueness, KYC, wallet/chain integration, gas/payment and campaign sending are unimplemented. Refresh/closure clears live state. Follow-up fields and synthetic review do not establish actual usefulness, delivered responses or achieved SLAs. Full event idempotency, historical reporting and budget controls are prospective requirements.
 
@@ -89,10 +89,12 @@ Actual screen-reader operation, exhaustive cross-browser/physical-device accessi
 
 The required submission package has **exactly three items**: (1) **Loom ≤5 minutes**, (2) **intent.md**, (3) **final directive.md**. All linked materials are supporting evidence, not additional top-level submissions.
 
-- **Loom:** I still need to record and supply a verified URL covering selection, result, important revision/check, AI role, personal decisions and limits. No duration is claimed verified.
-- **Actual focused human effort:** I still need to report actual effort. Estimates and the tab's Demo Session timer are not measured total effort.
-- **Intended-reviewer access:** I still need to arrange appropriate sharing and verify each final link as the intended reviewer. Owner authentication and local file existence are insufficient.
-- **Submission metadata/destination:** I still need to supply the final submission details. The repository does not establish the assessment cutoff or timezone.
-- **Final personal acceptance and submission:** I still need to review the final package and complete the Quest submission.
+**Owner-confirmed status:** the Quest has been submitted, including the three required links. This post-submission QA corrects the repository handoff; it does not alter the submitted Loom or assessment portal. Earlier dated statements in the verification record describe readiness at those historical checkpoints, not current submission status.
+
+- **Loom:** its link was submitted according to the owner. The URL, playback/reviewer access and actual video duration have not been independently verified in this QA. The required maximum remains five minutes; no URL or measured duration is invented.
+- **Actual focused human effort:** not independently established. Estimates and the tab's Demo Session timer are not measured total effort; no working-hours claim is added.
+- **Intended-reviewer access:** not independently verified. This repository remains private; the intended reviewer needs appropriate read permission to open private links or clone it. Owner authentication and local file existence do not establish reviewer access. This QA does not change collaborators or visibility.
+- **Portal evidence and submission details:** submission of the three links is owner-confirmed; no portal receipt, acceptance confirmation, submission timestamp or destination is independently established here.
+- **Post-submission corrections:** the focused repository corrections are separate from the already-submitted video and portal. Final review of those corrections does not make the original submission unfinished or imply a hiring outcome.
 
 The Quest threshold is 76/100. This handoff does not assign an official score or hiring outcome.
