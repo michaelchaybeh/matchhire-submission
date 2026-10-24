@@ -2,6 +2,14 @@
 
 This proposed A/B email experiment uses the fictional Suncrest Protocol disclosure on Asset Market Cap. The emails are unsent: no campaign, recruitment or real delivery has occurred. The synthetic illustration below demonstrates the metrics; it is separate from the proposed randomized experiment.
 
+## Why email, and what it does not test
+
+The Quest requires one channel experiment. I selected a hypothetical waitlist email A/B experiment because waitlist invitations initiate the fictional disclosure journey. The selected product bottleneck is disclosure engagement → qualified inquiries. This comparison asks whether invitation messaging that emphasizes useful questions and visible review/follow-up could improve meaningful participation. Both variants lead to the same disclosure and participation experience. The primary success metric measures qualified participation among eligible randomly assigned invitees, rather than email clicks, question volume or wallet activity.
+
+The email experiment evaluates invitation messaging across the complete invitation-to-qualified-inquiry journey. It does not isolate whether section-specific question guidance, clearer review-process explanations, or visible question status and follow-up individually improve qualified-question conversion.
+
+A separate hypothetical in-product A/B test could compare the standard disclosure-reading and question-submission experience with the same experience plus enhanced section-specific guidance and a clearer explanation of review/follow-up. Both would retain identical eligibility, qualification standards, wallet-optional participation and reviewer policies; a possible outcome would be qualified-question conversion among eligible disclosure viewers. This is an illustrative follow-on concept, not a second required Quest experiment. It has not been built, randomized, conducted or validated, and is not scheduled.
+
 ## Hypothesis and treatment
 
 Explaining that useful inquiries receive visible reasoned review and a next action may help invited people contribute specific, actionable questions. This is a hypothesis about the complete invitation-to-contribution path, not an observed customer result.
@@ -65,4 +73,6 @@ No causal conclusion, forecast, winner, observed baseline or significance follow
 
 ## Next validation and launch prerequisites
 
-First prepare moderated synthetic-task usability validation of references, review understanding and refusal/recovery. Recruitment and testing require Product approval before any session. Engineering prepares record/recovery checks; operations prepares critical/supportive calibration examples and follow-up/appeal ownership; Product reviews prompt comprehension and adverse incentives. The pilot owner then evaluates readiness, identity/access controls, sample/timing, capacity and pending sponsorship policy before considering a real campaign.
+The activities below are hypothetical measures that would be necessary if this fictional concept were ever considered for real-world use. This prototype exists solely for a recruitment assessment; no product launch, participant recruitment, live email campaign or commercialization is planned. A real pilot would require separate approval.
+
+In that hypothetical situation, moderated synthetic-task usability validation would first examine references, review understanding and refusal/recovery. Recruitment and testing would require Product approval before any session. Engineering would prepare record/recovery checks; operations would prepare critical/supportive calibration examples and follow-up/appeal ownership; Product would review prompt comprehension and adverse incentives. The pilot owner would then evaluate readiness, identity/access controls, sample/timing, capacity and pending sponsorship policy before considering a real campaign. Any in-product A/B test would be a separate hypothetical validation step subject to its own design and approval.

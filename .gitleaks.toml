@@ -1,0 +1,10 @@
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Synthetic participant alias values in Quest fixtures"
+targetRules = ["generic-api-key"]
+condition = "AND"
+regexTarget = "line"
+paths = ['''^data/(registrations|experiment)\.synthetic\.json$''']
+regexes = ['''^\s*"alias_token"\s*:\s*"[^"]+"\s*,?\s*$''']
