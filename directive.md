@@ -68,15 +68,16 @@ The unchanged synthetic snapshot contains 50 invitations (25/arm), 40 eligible v
 
 My product rationale is to prioritize useful, person-based participation with public reading, permissioned submission, consistent qualification and an accountable response path. The prioritization scores and provisional assumptions are documented in [intent](intent.md) and the [PRD](docs/prd.md).
 
-Codex contributed research/source checking, implementation/domain/measurement logic, labeled synthetic records/tests, drafting and the historically recorded automated/native-browser verification and corrections. Synthetic reviewer actions are test judgments, not AI grading of real people.
+I directed and approved the product decisions and the ChatGPT–Codex workflow, and retained responsibility for product direction, prioritization and approval of the work. No work in that workflow proceeded without my approval. I personally reviewed and approved all four alternatives and their prioritization scores on 19 October 2026.
+
+ChatGPT and Codex assisted with research, drafting, implementation and technical verification. Codex's recorded contributions include source checking, domain/measurement logic, labeled synthetic records/tests and the historical automated/native-browser verification and corrections. Synthetic reviewer actions are test judgments, not AI grading of real people.
 
 Recorded pre-existing-work attribution credits an exploratory wireframe with visual, bounded-preview/escaping and optional-wallet recovery patterns; canonical identity, qualification/revision/follow-up, equations, tests and assessment artifacts are attributed to the MVP work.
 
-Technical revision history includes correct question-specific certificates, final off-chain decisions after failure, participant/sign-out/evaluator refinements, deterministic dialog focus and exact selected-question return with 15 added regressions. The earlier numeric-representation failure and passing rerun remain in evidence. The repository establishes the technical changes and saved outputs. It does not independently establish my personal involvement or the timing of every decision. I still need to confirm:
+Technical revision history includes correct question-specific certificates, final off-chain decisions after failure, participant/sign-out/evaluator refinements, deterministic dialog focus and exact selected-question return with 15 added regressions. The earlier numeric-representation failure and passing rerun remain in evidence. The repository records these implementation changes and technical outcomes. The remaining details to confirm are:
 
-- The original timing and basis of prioritization scores and approvals of scope, rules, sponsorship and acceptance criteria.
-- Personal walkthroughs and ownership of certificate/off-chain, account and evaluator refinements attributed in the historical handoff.
-- The exact pre-existing-work/AI contribution split and any additional ChatGPT involvement.
+- Details of personal walkthroughs and hands-on contributions to certificate/off-chain, account and evaluator refinements attributed in the historical handoff.
+- The fine-grained split between pre-existing work, my hands-on contributions and AI assistance.
 
 No interviews or real-user validation are recorded.
 
